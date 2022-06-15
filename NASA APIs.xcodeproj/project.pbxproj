@@ -1,0 +1,508 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		653BC54C28400FB100E05BDA /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653BC54B28400FB100E05BDA /* TestViewController.swift */; };
+		653BC54E284018B000E05BDA /* EarthNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653BC54D284018B000E05BDA /* EarthNavigationController.swift */; };
+		65490DCF283A7ACE00BC535D /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65490DCE283A7ACE00BC535D /* UIColor+Extension.swift */; };
+		65534CC42831828A008EB511 /* UIButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65534CC32831828A008EB511 /* UIButtons.swift */; };
+		65534CC6283221FD008EB511 /* UILabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65534CC5283221FD008EB511 /* UILabels.swift */; };
+		65804682284249D50000E9BD /* UIViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65804681284249D50000E9BD /* UIViews.swift */; };
+		65AD47D1282CF9D400F08BD5 /* CABacicAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AD47D0282CF9D300F08BD5 /* CABacicAnimations.swift */; };
+		65AD47D3282EFC2300F08BD5 /* UIShapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AD47D2282EFC2300F08BD5 /* UIShapes.swift */; };
+		65B70BDC283E37BE00021EB1 /* NasaVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B70BDB283E37BE00021EB1 /* NasaVC.swift */; };
+		65B70BDE283E37DC00021EB1 /* SpaceXVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B70BDD283E37DC00021EB1 /* SpaceXVC.swift */; };
+		65B70BE5283E458900021EB1 /* EarthTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B70BE4283E458900021EB1 /* EarthTabBarController.swift */; };
+		65BAE2F52812BDE6000253B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BAE2F42812BDE6000253B5 /* AppDelegate.swift */; };
+		65BAE2F72812BDE6000253B5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BAE2F62812BDE6000253B5 /* SceneDelegate.swift */; };
+		65BAE2F92812BDE6000253B5 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BAE2F82812BDE6000253B5 /* StartViewController.swift */; };
+		65BAE2FC2812BDE6000253B5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65BAE2FA2812BDE6000253B5 /* Main.storyboard */; };
+		65BAE2FF2812BDE6000253B5 /* NASA APIs.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 65BAE2FD2812BDE6000253B5 /* NASA APIs.xcdatamodeld */; };
+		65BAE3012812BDEF000253B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65BAE3002812BDEF000253B5 /* Assets.xcassets */; };
+		65BAE3042812BDEF000253B5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65BAE3022812BDEF000253B5 /* LaunchScreen.storyboard */; };
+		65BAE3132813621A000253B5 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BAE3122813621A000253B5 /* MainViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		653BC54B28400FB100E05BDA /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		653BC54D284018B000E05BDA /* EarthNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarthNavigationController.swift; sourceTree = "<group>"; };
+		65490DCE283A7ACE00BC535D /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		65534CC32831828A008EB511 /* UIButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtons.swift; sourceTree = "<group>"; wrapsLines = 0; };
+		65534CC5283221FD008EB511 /* UILabels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabels.swift; sourceTree = "<group>"; };
+		65804681284249D50000E9BD /* UIViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViews.swift; sourceTree = "<group>"; };
+		65AD47D0282CF9D300F08BD5 /* CABacicAnimations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CABacicAnimations.swift; sourceTree = "<group>"; };
+		65AD47D2282EFC2300F08BD5 /* UIShapes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIShapes.swift; sourceTree = "<group>"; };
+		65B70BDB283E37BE00021EB1 /* NasaVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NasaVC.swift; sourceTree = "<group>"; };
+		65B70BDD283E37DC00021EB1 /* SpaceXVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceXVC.swift; sourceTree = "<group>"; };
+		65B70BE4283E458900021EB1 /* EarthTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarthTabBarController.swift; sourceTree = "<group>"; };
+		65BAE2F12812BDE6000253B5 /* NASA APIs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NASA APIs.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		65BAE2F42812BDE6000253B5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		65BAE2F62812BDE6000253B5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		65BAE2F82812BDE6000253B5 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
+		65BAE2FB2812BDE6000253B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		65BAE2FE2812BDE6000253B5 /* TwoSuns.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TwoSuns.xcdatamodel; sourceTree = "<group>"; };
+		65BAE3002812BDEF000253B5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		65BAE3032812BDEF000253B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		65BAE3052812BDEF000253B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		65BAE3122813621A000253B5 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		65BAE2EE2812BDE6000253B5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6527E41E2838D4650098468F /* UIElements */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UIElements;
+			sourceTree = "<group>";
+		};
+		653CD402283049E40001E508 /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				6527E41E2838D4650098468F /* UIElements */,
+				65AD47D2282EFC2300F08BD5 /* UIShapes.swift */,
+				65534CC5283221FD008EB511 /* UILabels.swift */,
+				65534CC32831828A008EB511 /* UIButtons.swift */,
+				65804681284249D50000E9BD /* UIViews.swift */,
+			);
+			path = Objects;
+			sourceTree = "<group>";
+		};
+		65490DD0283A7AE500BC535D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				65490DCE283A7ACE00BC535D /* UIColor+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		65AD47CF282CF98700F08BD5 /* Animations & Shapes */ = {
+			isa = PBXGroup;
+			children = (
+				65AD47D0282CF9D300F08BD5 /* CABacicAnimations.swift */,
+			);
+			path = "Animations & Shapes";
+			sourceTree = "<group>";
+		};
+		65B70BE3283E381E00021EB1 /* EarthViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				653BC54D284018B000E05BDA /* EarthNavigationController.swift */,
+				65B70BE4283E458900021EB1 /* EarthTabBarController.swift */,
+				65B70BDB283E37BE00021EB1 /* NasaVC.swift */,
+				65B70BDD283E37DC00021EB1 /* SpaceXVC.swift */,
+			);
+			path = EarthViewControllers;
+			sourceTree = "<group>";
+		};
+		65BAE2E82812BDE6000253B5 = {
+			isa = PBXGroup;
+			children = (
+				65BAE2F32812BDE6000253B5 /* NASA APIs */,
+				65BAE2F22812BDE6000253B5 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		65BAE2F22812BDE6000253B5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				65BAE2F12812BDE6000253B5 /* NASA APIs.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		65BAE2F32812BDE6000253B5 /* NASA APIs */ = {
+			isa = PBXGroup;
+			children = (
+				65BAE30B2812BE18000253B5 /* ViewControllers */,
+				65490DD0283A7AE500BC535D /* Extensions */,
+				653CD402283049E40001E508 /* Objects */,
+				65AD47CF282CF98700F08BD5 /* Animations & Shapes */,
+				65BAE3112812BEB8000253B5 /* App */,
+				65BAE3102812BEA7000253B5 /* Storyboards */,
+				65BAE30F2812BE74000253B5 /* Models */,
+				65BAE30D2812BE61000253B5 /* Resourses */,
+				65BAE2FD2812BDE6000253B5 /* NASA APIs.xcdatamodeld */,
+			);
+			path = "NASA APIs";
+			sourceTree = "<group>";
+		};
+		65BAE30B2812BE18000253B5 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				65BAE2F82812BDE6000253B5 /* StartViewController.swift */,
+				65BAE3122813621A000253B5 /* MainViewController.swift */,
+				65B70BE3283E381E00021EB1 /* EarthViewControllers */,
+				653BC54B28400FB100E05BDA /* TestViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		65BAE30D2812BE61000253B5 /* Resourses */ = {
+			isa = PBXGroup;
+			children = (
+				65BAE3002812BDEF000253B5 /* Assets.xcassets */,
+			);
+			path = Resourses;
+			sourceTree = "<group>";
+		};
+		65BAE30F2812BE74000253B5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		65BAE3102812BEA7000253B5 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				65BAE3022812BDEF000253B5 /* LaunchScreen.storyboard */,
+				65BAE2FA2812BDE6000253B5 /* Main.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		65BAE3112812BEB8000253B5 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				65BAE3052812BDEF000253B5 /* Info.plist */,
+				65BAE2F42812BDE6000253B5 /* AppDelegate.swift */,
+				65BAE2F62812BDE6000253B5 /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		65BAE2F02812BDE6000253B5 /* NASA APIs */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 65BAE3082812BDEF000253B5 /* Build configuration list for PBXNativeTarget "NASA APIs" */;
+			buildPhases = (
+				65BAE2ED2812BDE6000253B5 /* Sources */,
+				65BAE2EE2812BDE6000253B5 /* Frameworks */,
+				65BAE2EF2812BDE6000253B5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "NASA APIs";
+			productName = TwoSuns;
+			productReference = 65BAE2F12812BDE6000253B5 /* NASA APIs.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		65BAE2E92812BDE6000253B5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1330;
+				LastUpgradeCheck = 1330;
+				TargetAttributes = {
+					65BAE2F02812BDE6000253B5 = {
+						CreatedOnToolsVersion = 13.3.1;
+					};
+				};
+			};
+			buildConfigurationList = 65BAE2EC2812BDE6000253B5 /* Build configuration list for PBXProject "NASA APIs" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 65BAE2E82812BDE6000253B5;
+			productRefGroup = 65BAE2F22812BDE6000253B5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				65BAE2F02812BDE6000253B5 /* NASA APIs */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		65BAE2EF2812BDE6000253B5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65BAE3042812BDEF000253B5 /* LaunchScreen.storyboard in Resources */,
+				65BAE3012812BDEF000253B5 /* Assets.xcassets in Resources */,
+				65BAE2FC2812BDE6000253B5 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		65BAE2ED2812BDE6000253B5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65BAE3132813621A000253B5 /* MainViewController.swift in Sources */,
+				65B70BE5283E458900021EB1 /* EarthTabBarController.swift in Sources */,
+				653BC54C28400FB100E05BDA /* TestViewController.swift in Sources */,
+				65AD47D3282EFC2300F08BD5 /* UIShapes.swift in Sources */,
+				65BAE2F92812BDE6000253B5 /* StartViewController.swift in Sources */,
+				65490DCF283A7ACE00BC535D /* UIColor+Extension.swift in Sources */,
+				65534CC42831828A008EB511 /* UIButtons.swift in Sources */,
+				65534CC6283221FD008EB511 /* UILabels.swift in Sources */,
+				65B70BDC283E37BE00021EB1 /* NasaVC.swift in Sources */,
+				65BAE2F52812BDE6000253B5 /* AppDelegate.swift in Sources */,
+				65B70BDE283E37DC00021EB1 /* SpaceXVC.swift in Sources */,
+				65BAE2F72812BDE6000253B5 /* SceneDelegate.swift in Sources */,
+				65BAE2FF2812BDE6000253B5 /* NASA APIs.xcdatamodeld in Sources */,
+				65AD47D1282CF9D400F08BD5 /* CABacicAnimations.swift in Sources */,
+				65804682284249D50000E9BD /* UIViews.swift in Sources */,
+				653BC54E284018B000E05BDA /* EarthNavigationController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		65BAE2FA2812BDE6000253B5 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				65BAE2FB2812BDE6000253B5 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		65BAE3022812BDEF000253B5 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				65BAE3032812BDEF000253B5 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		65BAE3062812BDEF000253B5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		65BAE3072812BDEF000253B5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		65BAE3092812BDEF000253B5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "NASA APIs/App/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = no.TwoSuns;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		65BAE30A2812BDEF000253B5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "NASA APIs/App/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = no.TwoSuns;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		65BAE2EC2812BDE6000253B5 /* Build configuration list for PBXProject "NASA APIs" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				65BAE3062812BDEF000253B5 /* Debug */,
+				65BAE3072812BDEF000253B5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		65BAE3082812BDEF000253B5 /* Build configuration list for PBXNativeTarget "NASA APIs" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				65BAE3092812BDEF000253B5 /* Debug */,
+				65BAE30A2812BDEF000253B5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		65BAE2FD2812BDE6000253B5 /* NASA APIs.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				65BAE2FE2812BDE6000253B5 /* TwoSuns.xcdatamodel */,
+			);
+			currentVersion = 65BAE2FE2812BDE6000253B5 /* TwoSuns.xcdatamodel */;
+			path = "NASA APIs.xcdatamodeld";
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 65BAE2E92812BDE6000253B5 /* Project object */;
+}
