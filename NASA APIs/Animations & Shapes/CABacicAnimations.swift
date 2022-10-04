@@ -14,6 +14,7 @@ class Animator {
     
     //MARK: - StartViewController
     
+    
     func animateCircleStartVC(to: Double) -> CAAnimationGroup {
         var rotation = [CABasicAnimation]()
         
@@ -202,6 +203,83 @@ class Animator {
         animation.duration = 1.5
         animation.repeatCount = .greatestFiniteMagnitude
         return animation
+    }
+    
+    func moveAnimate() -> CAAnimationGroup {
+        var animation = [CABasicAnimation]()
+        
+        let firstMove: CABasicAnimation = CABasicAnimation(keyPath: "transform.translation")
+        firstMove.beginTime = 0.0
+        firstMove.fromValue = CGSize(width: 0, height: 0)
+        firstMove.toValue = CGSize(width: 8, height: 8)
+        firstMove.duration = 0.5
+        animation.append(firstMove)
+        
+        let secondMove: CABasicAnimation = CABasicAnimation(keyPath: "transform.translation")
+        secondMove.beginTime = 0.5
+        secondMove.fromValue = CGSize(width: 8, height: 8)
+        secondMove.toValue = CGSize(width: 5, height: 5)
+        secondMove.duration = 0.5
+        animation.append(secondMove)
+        
+        let thirdMove: CABasicAnimation = CABasicAnimation(keyPath: "transform.translation")
+        thirdMove.beginTime = 1.0
+        thirdMove.fromValue = CGSize(width: 5, height: 5)
+        thirdMove.toValue = CGSize(width: 8, height: 8)
+        thirdMove.duration = 0.5
+        animation.append(thirdMove)
+        
+        let fourthMove: CABasicAnimation = CABasicAnimation(keyPath: "transform.translation")
+        fourthMove.beginTime = 1.5
+        fourthMove.fromValue = CGSize(width: 8, height: 8)
+        fourthMove.toValue = CGSize(width: 0, height: 0)
+        fourthMove.duration = 0.5
+        animation.append(fourthMove)
+        
+        
+        let CAGroup = CAAnimationGroup()
+        CAGroup.duration = 3.0
+        CAGroup.repeatCount = .infinity
+        CAGroup.animations = animation
+        return CAGroup
+    }
+    
+    func animateColor() -> CAAnimationGroup {
+        var animation = [CABasicAnimation]()
+        
+        let firstPhase = CABasicAnimation(keyPath: "opacity")
+        firstPhase.duration = 1.0
+        firstPhase.fromValue = 1.0
+        firstPhase.toValue = 0.0
+        animation.append(firstPhase)
+        
+        let secondPhase = CABasicAnimation(keyPath: "opacity")
+        secondPhase.beginTime = 1.0
+        secondPhase.duration = 2.0
+        secondPhase.fromValue = 0.0
+        secondPhase.toValue = 1.0
+        animation.append(secondPhase)
+        
+        let thirdPhase = CABasicAnimation(keyPath: "transform.scale")
+        thirdPhase.beginTime = 2.0
+        thirdPhase.fromValue = 1.0
+        thirdPhase.toValue = 1.05
+        thirdPhase.duration = 1.0
+        animation.append(thirdPhase)
+        
+        let fourPhase = CABasicAnimation(keyPath: "transform.scale")
+        fourPhase.beginTime = 3.0
+        fourPhase.fromValue = 1.05
+        fourPhase.toValue = 1.0
+        fourPhase.duration = 1.0
+        animation.append(fourPhase)
+        
+        let CAGroup = CAAnimationGroup()
+        CAGroup.duration = 4.0
+        CAGroup.repeatCount = .infinity
+        CAGroup.animations = animation
+        
+        return CAGroup
     }
     
     //MARK: - EarthTabBarController

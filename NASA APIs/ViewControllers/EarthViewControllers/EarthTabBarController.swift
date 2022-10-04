@@ -14,6 +14,8 @@ class EarthTabBarController: UITabBarController {
     
     private let navigationView = CustomNavigationViewWithTheEarth()
     
+    let navigationBackground = UIView()
+    
     var nasaImageView = UIImageView()
     var spaceXImageView = UIImageView()
     
@@ -98,8 +100,16 @@ class EarthTabBarController: UITabBarController {
             title: "Earth ", style: .plain, target: nil, action: nil)
         let imageView = navigationView
         navigationItem.titleView = imageView
-        animateTwo(image: imageView.earthEllypseTwo)
-        animateOne(image: imageView.earthEllypseOne)
+        animateTwo(image: imageView.firstNavigationRing)
+        animateOne(image: imageView.secondNavigationRing)
+        
+        view.addSubview(navigationBackground)
+
+        navigationBackground.translatesAutoresizingMaskIntoConstraints = false
+        navigationBackground.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        navigationBackground.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        navigationBackground.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        navigationBackground.backgroundColor = UIColor.black.withAlphaComponent(0.8)
     }
     
     private func animateTwo(image: UIImageView) {
@@ -113,13 +123,7 @@ class EarthTabBarController: UITabBarController {
         CAGroup.speed = 0.3
         image.layer.add(CAGroup, forKey: nil)
     }
-    
-    private func animate(image: CAShapeLayer) {
-        let CAGroup = animator.animateCircleStartVC(to: -.pi * 2.0)
-        CAGroup.speed = 0.3
-        image.add(CAGroup, forKey: nil)
-    }
-    
+
     //MARK: - Add Logos
     
     private func addLogoButtons() {

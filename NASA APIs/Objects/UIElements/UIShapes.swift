@@ -85,10 +85,25 @@ class ShapeBezier {
         shapeLayer.frame = view.bounds
         let path = UIBezierPath()
         path.move(to: CGPoint(x: view.frame.width / 2 - 30, y: view.frame.height / 2 - 30))
-        path.addLine(to: CGPoint(x: view.frame.width / 2 + 85, y: view.frame.height / 2 - 30))
+        path.addLine(to: CGPoint(x: view.frame.width / 2 + 140, y: view.frame.height / 2 - 30))
         shapeLayer.path = path.cgPath
     }
     
+    func fourthLineFrame(shapeLayer: CAShapeLayer, view: UIView) {
+        shapeLayer.frame = view.bounds
+        let path = UIBezierPath()
+        path.move(to: CGPoint(x: view.frame.width / 2 + 60, y: view.frame.height / 2 + 45))
+        path.addLine(to: CGPoint(x: view.frame.width / 2 - 150, y: view.frame.height / 2 + 45))
+        shapeLayer.path = path.cgPath
+    }
+    
+    func fiveLineFrame(shapeLayer: CAShapeLayer, view: UIView) {
+        shapeLayer.frame = view.bounds
+        let path = UIBezierPath()
+        path.move(to: CGPoint(x: view.frame.width , y: view.frame.height ))
+        path.addLine(to: CGPoint(x: view.frame.width / 2.3, y: view.frame.height / 2.3))
+        shapeLayer.path = path.cgPath
+    }
     func ISSPilling(shapeLayer: CAShapeLayer, view: UIView) {
         shapeLayer.frame = view.bounds
         let path = UIBezierPath(arcCenter: CGPoint(x: view.frame.width / 2 + 35, y: view.frame.height / 2 + 2), radius: 0.2, startAngle: 50, endAngle: 100, clockwise: true)
