@@ -8,10 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		653BC54C28400FB100E05BDA /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653BC54B28400FB100E05BDA /* TestViewController.swift */; };
-		653BC54E284018B000E05BDA /* EarthNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653BC54D284018B000E05BDA /* EarthNavigationController.swift */; };
+		653BC54E284018B000E05BDA /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653BC54D284018B000E05BDA /* NavigationController.swift */; };
+		6546DB9028CCB0BD00134B48 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6546DB8F28CCB0BD00134B48 /* NetworkManager.swift */; };
 		65490DCF283A7ACE00BC535D /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65490DCE283A7ACE00BC535D /* UIColor+Extension.swift */; };
 		65534CC42831828A008EB511 /* UIButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65534CC32831828A008EB511 /* UIButtons.swift */; };
 		65534CC6283221FD008EB511 /* UILabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65534CC5283221FD008EB511 /* UILabels.swift */; };
+		6580194028C8FFC50097DCC8 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6580193F28C8FFC50097DCC8 /* Models.swift */; };
+		6580194228C94A4D0097DCC8 /* MarsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6580194128C94A4D0097DCC8 /* MarsViewController.swift */; };
 		65804682284249D50000E9BD /* UIViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65804681284249D50000E9BD /* UIViews.swift */; };
 		65AD47D1282CF9D400F08BD5 /* CABacicAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AD47D0282CF9D300F08BD5 /* CABacicAnimations.swift */; };
 		65AD47D3282EFC2300F08BD5 /* UIShapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AD47D2282EFC2300F08BD5 /* UIShapes.swift */; };
@@ -30,10 +33,13 @@
 
 /* Begin PBXFileReference section */
 		653BC54B28400FB100E05BDA /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
-		653BC54D284018B000E05BDA /* EarthNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarthNavigationController.swift; sourceTree = "<group>"; };
+		653BC54D284018B000E05BDA /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		6546DB8F28CCB0BD00134B48 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		65490DCE283A7ACE00BC535D /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		65534CC32831828A008EB511 /* UIButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtons.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		65534CC5283221FD008EB511 /* UILabels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabels.swift; sourceTree = "<group>"; };
+		6580193F28C8FFC50097DCC8 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		6580194128C94A4D0097DCC8 /* MarsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarsViewController.swift; sourceTree = "<group>"; };
 		65804681284249D50000E9BD /* UIViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViews.swift; sourceTree = "<group>"; };
 		65AD47D0282CF9D300F08BD5 /* CABacicAnimations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CABacicAnimations.swift; sourceTree = "<group>"; };
 		65AD47D2282EFC2300F08BD5 /* UIShapes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIShapes.swift; sourceTree = "<group>"; };
@@ -66,6 +72,10 @@
 		6527E41E2838D4650098468F /* UIElements */ = {
 			isa = PBXGroup;
 			children = (
+				65AD47D2282EFC2300F08BD5 /* UIShapes.swift */,
+				65534CC5283221FD008EB511 /* UILabels.swift */,
+				65534CC32831828A008EB511 /* UIButtons.swift */,
+				65804681284249D50000E9BD /* UIViews.swift */,
 			);
 			path = UIElements;
 			sourceTree = "<group>";
@@ -74,12 +84,16 @@
 			isa = PBXGroup;
 			children = (
 				6527E41E2838D4650098468F /* UIElements */,
-				65AD47D2282EFC2300F08BD5 /* UIShapes.swift */,
-				65534CC5283221FD008EB511 /* UILabels.swift */,
-				65534CC32831828A008EB511 /* UIButtons.swift */,
-				65804681284249D50000E9BD /* UIViews.swift */,
 			);
 			path = Objects;
+			sourceTree = "<group>";
+		};
+		6546DB9128CCB0C800134B48 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				6546DB8F28CCB0BD00134B48 /* NetworkManager.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		65490DD0283A7AE500BC535D /* Extensions */ = {
@@ -101,7 +115,6 @@
 		65B70BE3283E381E00021EB1 /* EarthViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				653BC54D284018B000E05BDA /* EarthNavigationController.swift */,
 				65B70BE4283E458900021EB1 /* EarthTabBarController.swift */,
 				65B70BDB283E37BE00021EB1 /* NasaVC.swift */,
 				65B70BDD283E37DC00021EB1 /* SpaceXVC.swift */,
@@ -135,8 +148,8 @@
 				65BAE3112812BEB8000253B5 /* App */,
 				65BAE3102812BEA7000253B5 /* Storyboards */,
 				65BAE30F2812BE74000253B5 /* Models */,
+				6546DB9128CCB0C800134B48 /* Services */,
 				65BAE30D2812BE61000253B5 /* Resourses */,
-				65BAE2FD2812BDE6000253B5 /* NASA APIs.xcdatamodeld */,
 			);
 			path = "NASA APIs";
 			sourceTree = "<group>";
@@ -146,6 +159,8 @@
 			children = (
 				65BAE2F82812BDE6000253B5 /* StartViewController.swift */,
 				65BAE3122813621A000253B5 /* MainViewController.swift */,
+				653BC54D284018B000E05BDA /* NavigationController.swift */,
+				6580194128C94A4D0097DCC8 /* MarsViewController.swift */,
 				65B70BE3283E381E00021EB1 /* EarthViewControllers */,
 				653BC54B28400FB100E05BDA /* TestViewController.swift */,
 			);
@@ -155,6 +170,7 @@
 		65BAE30D2812BE61000253B5 /* Resourses */ = {
 			isa = PBXGroup;
 			children = (
+				65BAE2FD2812BDE6000253B5 /* NASA APIs.xcdatamodeld */,
 				65BAE3002812BDEF000253B5 /* Assets.xcassets */,
 			);
 			path = Resourses;
@@ -163,6 +179,7 @@
 		65BAE30F2812BE74000253B5 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				6580193F28C8FFC50097DCC8 /* Models.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -257,8 +274,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6546DB9028CCB0BD00134B48 /* NetworkManager.swift in Sources */,
 				65BAE3132813621A000253B5 /* MainViewController.swift in Sources */,
+				6580194028C8FFC50097DCC8 /* Models.swift in Sources */,
 				65B70BE5283E458900021EB1 /* EarthTabBarController.swift in Sources */,
+				6580194228C94A4D0097DCC8 /* MarsViewController.swift in Sources */,
 				653BC54C28400FB100E05BDA /* TestViewController.swift in Sources */,
 				65AD47D3282EFC2300F08BD5 /* UIShapes.swift in Sources */,
 				65BAE2F92812BDE6000253B5 /* StartViewController.swift in Sources */,
@@ -272,7 +292,7 @@
 				65BAE2FF2812BDE6000253B5 /* NASA APIs.xcdatamodeld in Sources */,
 				65AD47D1282CF9D400F08BD5 /* CABacicAnimations.swift in Sources */,
 				65804682284249D50000E9BD /* UIViews.swift in Sources */,
-				653BC54E284018B000E05BDA /* EarthNavigationController.swift in Sources */,
+				653BC54E284018B000E05BDA /* NavigationController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -427,6 +447,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -455,6 +476,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

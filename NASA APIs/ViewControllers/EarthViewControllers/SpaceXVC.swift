@@ -9,8 +9,6 @@ import UIKit
 
 class SpaceXVC: UIViewController {
     
-    let testBar = UIView()
-    
     let backgroundImage = UIImageView()
     let backgroundLogo = UIImageView()
 
@@ -18,17 +16,7 @@ class SpaceXVC: UIViewController {
         super.viewDidLoad()
         
         view.addSubview(backgroundImage)
-        
-        view.addSubview(testBar)
-        
-        testBar.translatesAutoresizingMaskIntoConstraints = false
-        testBar.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
-        testBar.heightAnchor.constraint(equalToConstant: 107).isActive = true
-        testBar.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        testBar.backgroundColor = UIColor.black.withAlphaComponent(0.3)
-        
-        
-        
+
         backgroundImage.translatesAutoresizingMaskIntoConstraints = false
         
         

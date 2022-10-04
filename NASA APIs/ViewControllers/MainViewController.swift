@@ -15,6 +15,8 @@ class MainViewController: UIViewController {
     @IBOutlet weak var moonViewOutlet: UIView!
     @IBOutlet weak var marsViewOutlet: UIView!
     @IBOutlet weak var spaceProbesViewOutlet: UIView!
+    @IBOutlet weak var myObservatoryViewOutlet: UIView!
+    @IBOutlet weak var sunViewOutlet: UIView!
     
     private var gradient = CAGradientLayer()
     
@@ -24,9 +26,13 @@ class MainViewController: UIViewController {
     @IBOutlet weak var moonLabel: UILabel!
     @IBOutlet weak var marsLabel: UILabel!
     @IBOutlet weak var probesLabel: UILabel!
+    @IBOutlet weak var myObservatoryLabel: UILabel!
+    @IBOutlet weak var sunLabel: UILabel!
     
     @IBOutlet weak var moonEllypse: UIImageView!
     @IBOutlet weak var marsEllypse: UIImageView!
+    @IBOutlet weak var observatoryTelescope: UIImageView!
+    @IBOutlet weak var sun: UIImageView!
     
     
     private let animator = Animator()
@@ -34,6 +40,8 @@ class MainViewController: UIViewController {
     private let firstLineShape = ThinLineShape()
     private let secondLineShape = ThinLineShape()
     private let thirdlineShape = ThinLineShape()
+    private let fourthLineShape = ThinLineShape()
+    private let fiveLineShape = ThinLineShape()
     
     private let ISSpilling = ThinLineShape()
     private let probesPilling = ThinLineShape()
@@ -54,6 +62,7 @@ class MainViewController: UIViewController {
         moonViewOutlet.backgroundColor = .none
         marsViewOutlet.backgroundColor = .none
         spaceProbesViewOutlet.backgroundColor = .none
+        myObservatoryViewOutlet.backgroundColor = .none
         
         pillingProbes()
         
@@ -70,11 +79,12 @@ class MainViewController: UIViewController {
         spaceProbesViewOutlet.addGestureRecognizer(tapProbes)
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     @objc func didTapEarth() {
         print("earth")
-        
-//        let vc = storyboard?.instantiateViewController(withIdentifier: "tabBar") as? tabBar
-//        self.present(vc ?? self, animated: true)
         
         performSegue(withIdentifier: "toEarth", sender: nil)
  
@@ -92,6 +102,7 @@ class MainViewController: UIViewController {
     
     @objc func didTapMars() {
         print("mars")
+        performSegue(withIdentifier: "marsID", sender: nil)
     }
     
     @objc func didTapProbes() {
@@ -106,8 +117,8 @@ class MainViewController: UIViewController {
         gradient.endPoint = CGPoint(x: 0, y: 1)
         gradient.frame = CGRect(x: 0, y: 0, width: view.frame.width,
                                 height: view.frame.height)
-        gradient.colors = [UIColor.upGradient.cgColor,
-                           UIColor.downGradient.cgColor]
+        gradient.colors = [UIColor.downGradient.cgColor,
+                           UIColor.upGradient.cgColor]
         return gradient
     }
     
@@ -115,6 +126,9 @@ class MainViewController: UIViewController {
         view.layer.insertSublayer(firstLineShape, at: 0)
         ISSViewOutlet.layer.insertSublayer(secondLineShape, at: 0)
         spaceProbesViewOutlet.layer.insertSublayer(thirdlineShape, at: 0)
+        myObservatoryViewOutlet.layer.insertSublayer(fourthLineShape, at: 0)
+        sunViewOutlet.layer.insertSublayer(fiveLineShape, at: 2)
+        
         ISSViewOutlet.layer.insertSublayer(ISSpilling, at: 0)
         spaceProbesViewOutlet.layer.insertSublayer(probesPilling, at: 0)
         firstLineShape.lineWidth = 0.4
@@ -123,6 +137,10 @@ class MainViewController: UIViewController {
         secondLineShape.strokeColor = UIColor.whiteColor.withAlphaComponent(0.5).cgColor
         thirdlineShape.lineWidth = 0.4
         thirdlineShape.strokeColor = UIColor.whiteColor.withAlphaComponent(0.5).cgColor
+        fourthLineShape.lineWidth = 0.4
+        fourthLineShape.strokeColor = UIColor.whiteColor.withAlphaComponent(0.5).cgColor
+        fiveLineShape.lineWidth = 0.4
+        fiveLineShape.strokeColor = UIColor.black.withAlphaComponent(0.8).cgColor
         ISSpilling.lineWidth = 3
         ISSpilling.strokeColor = UIColor.whiteColor.withAlphaComponent(0.5).cgColor
         probesPilling.lineWidth = 3
@@ -134,6 +152,8 @@ class MainViewController: UIViewController {
         shapeBezier.firstLineFrame(shapeLayer: firstLineShape, view: self.view)
         shapeBezier.secondLineFrame(shapeLayer: secondLineShape, view: ISSViewOutlet)
         shapeBezier.thirdlineFrame(shapeLayer: thirdlineShape, view: spaceProbesViewOutlet)
+        shapeBezier.fourthLineFrame(shapeLayer: fourthLineShape, view: myObservatoryViewOutlet)
+        shapeBezier.fiveLineFrame(shapeLayer: fiveLineShape, view: sunViewOutlet)
         shapeBezier.ISSPilling(shapeLayer: ISSpilling, view: ISSViewOutlet)
         shapeBezier.probesPilling(shapeLayer: probesPilling, view: spaceProbesViewOutlet)
         gradient.frame = CGRect(x: 0, y: 0, width: view.frame.width,
@@ -150,6 +170,8 @@ class MainViewController: UIViewController {
         moonEllypse.layer.speed = 0.3
         animateOrbit(image: marsEllypse)
         marsEllypse.layer.speed = 0.3
+        animateTelescope(image: observatoryTelescope)
+        animateSun(image: sun)
         
         animateSatellites(image: earthButton.earthEllypseTwo)
         earthButton.earthEllypseTwo.layer.speed = 0.2
@@ -158,7 +180,9 @@ class MainViewController: UIViewController {
         
         animateLine(shape: firstLineShape,
                     shapeTwo: secondLineShape,
-                    shapeThree: thirdlineShape)
+                    shapeThree: thirdlineShape,
+                    shapeFour: fourthLineShape,
+                    shapeFive: fiveLineShape)
         
         pillingISS(shape: ISSpilling)
         
@@ -182,6 +206,8 @@ class MainViewController: UIViewController {
             self.moonLabel.alpha = 1
             self.marsLabel.alpha = 1
             self.probesLabel.alpha = 1
+            self.myObservatoryLabel.alpha = 1
+            self.sunLabel.alpha = 0.8
         }
     }
     
@@ -192,11 +218,15 @@ class MainViewController: UIViewController {
     
     private func animateLine(shape: CAShapeLayer,
                              shapeTwo: CAShapeLayer,
-                             shapeThree: CAShapeLayer) {
+                             shapeThree: CAShapeLayer,
+                             shapeFour: CAShapeLayer,
+                             shapeFive: CAShapeLayer) {
         let animate = animator.animateLine()
         shape.add(animate, forKey: nil)
         shapeTwo.add(animate, forKey: nil)
         shapeThree.add(animate, forKey: nil)
+        shapeFour.add(animate, forKey: nil)
+        shapeFive.add(animate, forKey: nil)
     }
     
     private func animateOrbit(image: UIImageView) {
@@ -207,6 +237,16 @@ class MainViewController: UIViewController {
     private func animateSatellites(image: UIImageView) {
         let CAGroup = animator.animateCircleStartVC(to: -.pi * 2.0)
         image.layer.add(CAGroup, forKey: nil)
+    }
+    
+    private func animateTelescope(image: UIImageView) {
+        let animate = animator.moveAnimate()
+        image.layer.add(animate, forKey: nil)
+    }
+    
+    private func animateSun(image: UIImageView) {
+        let animate = animator.animateColor()
+        image.layer.add(animate, forKey: nil)
     }
     
     
@@ -223,6 +263,9 @@ class MainViewController: UIViewController {
         moonLabel.alpha = 0
         marsLabel.alpha = 0
         probesLabel.alpha = 0
+        myObservatoryLabel.alpha = 0
+        sunLabel.alpha = 0
+        sunLabel.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 4)
         
         earthButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         earthButton.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true

@@ -38,8 +38,10 @@ class StartViewController: UIViewController, UITextFieldDelegate, CAAnimationDel
         
         textOpacity(view: textContains)
         buttonOpacity(button: dislocationOutlet)
-        
-        
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
     }
     
 //MARK: - viewDidLayoutSubviews
@@ -132,8 +134,8 @@ class StartViewController: UIViewController, UITextFieldDelegate, CAAnimationDel
         gradient.endPoint = CGPoint(x: 0, y: 1)
         gradient.frame = CGRect(x: 0, y: 0, width: view.frame.width,
                                 height: view.frame.height)
-        gradient.colors = [UIColor.upGradient.cgColor,
-                           UIColor.downGradient.cgColor]
+        gradient.colors = [UIColor.downGradient.cgColor,
+                           UIColor.upGradient.cgColor]
         return gradient
     }
 }
