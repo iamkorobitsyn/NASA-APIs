@@ -14,7 +14,6 @@ class Animator {
     
     //MARK: - StartViewController
     
-    "qwe"
     
     func animateCircleStartVC(to: Double) -> CAAnimationGroup {
         var rotation = [CABasicAnimation]()
