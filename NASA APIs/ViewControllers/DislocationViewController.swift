@@ -7,7 +7,7 @@
 
 import UIKit
 
-class StartViewController: UIViewController, UITextFieldDelegate, CAAnimationDelegate {
+class DislocationViewController: UIViewController, UITextFieldDelegate, CAAnimationDelegate {
     
     //MARK: - Properties
     

@@ -10,7 +10,10 @@ import UIKit
 class MainViewController: UIViewController {
     
     var timer = Timer()
+    
+    private var gradient = CAGradientLayer()
 
+    @IBOutlet weak var EarthViewOutlet: UIView!
     @IBOutlet weak var ISSViewOutlet: UIView!
     @IBOutlet weak var moonViewOutlet: UIView!
     @IBOutlet weak var marsViewOutlet: UIView!
@@ -18,10 +21,6 @@ class MainViewController: UIViewController {
     @IBOutlet weak var myObservatoryViewOutlet: UIView!
     @IBOutlet weak var sunViewOutlet: UIView!
     
-    private var gradient = CAGradientLayer()
-    
-    private let earthButton = EarthButton()
-    private let earthLabel = EarthLabel()
     @IBOutlet weak var ISSLabel: UILabel!
     @IBOutlet weak var moonLabel: UILabel!
     @IBOutlet weak var marsLabel: UILabel!
@@ -29,8 +28,10 @@ class MainViewController: UIViewController {
     @IBOutlet weak var myObservatoryLabel: UILabel!
     @IBOutlet weak var sunLabel: UILabel!
     
-    @IBOutlet weak var moonEllypse: UIImageView!
-    @IBOutlet weak var marsEllypse: UIImageView!
+    @IBOutlet weak var earthCircleOne: UIImageView!
+    @IBOutlet weak var earthCircleTwo: UIImageView!
+    @IBOutlet weak var moonCircle: UIImageView!
+    @IBOutlet weak var marsCircle: UIImageView!
     @IBOutlet weak var observatoryTelescope: UIImageView!
     @IBOutlet weak var sun: UIImageView!
     
@@ -72,7 +73,7 @@ class MainViewController: UIViewController {
         let tapMars = UITapGestureRecognizer(target: self, action: #selector(didTapMars))
         let tapProbes = UITapGestureRecognizer(target: self, action: #selector(didTapProbes))
                                              
-        earthButton.addGestureRecognizer(tapEarth)
+        EarthViewOutlet.addGestureRecognizer(tapEarth)
         ISSViewOutlet.addGestureRecognizer(tapISS)
         moonViewOutlet.addGestureRecognizer(tapMoon)
         marsViewOutlet.addGestureRecognizer(tapMars)
@@ -85,19 +86,16 @@ class MainViewController: UIViewController {
     
     @objc func didTapEarth() {
         print("earth")
-        
         performSegue(withIdentifier: "toEarth", sender: nil)
- 
     }
     
     @objc func didTapISS() {
         print("ISS")
-//        let vc = TestViewController()
-//        navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc func didTapMoon() {
         print("Moon")
+        performSegue(withIdentifier: "moonID", sender: nil)
     }
     
     @objc func didTapMars() {
@@ -123,7 +121,7 @@ class MainViewController: UIViewController {
     }
     
     private func createLines() {
-        view.layer.insertSublayer(firstLineShape, at: 0)
+        EarthViewOutlet.layer.insertSublayer(firstLineShape, at: 0)
         ISSViewOutlet.layer.insertSublayer(secondLineShape, at: 0)
         spaceProbesViewOutlet.layer.insertSublayer(thirdlineShape, at: 0)
         myObservatoryViewOutlet.layer.insertSublayer(fourthLineShape, at: 0)
@@ -149,7 +147,7 @@ class MainViewController: UIViewController {
     }
     
     override func viewDidLayoutSubviews() {
-        shapeBezier.firstLineFrame(shapeLayer: firstLineShape, view: self.view)
+        shapeBezier.firstLineFrame(shapeLayer: firstLineShape, view: EarthViewOutlet)
         shapeBezier.secondLineFrame(shapeLayer: secondLineShape, view: ISSViewOutlet)
         shapeBezier.thirdlineFrame(shapeLayer: thirdlineShape, view: spaceProbesViewOutlet)
         shapeBezier.fourthLineFrame(shapeLayer: fourthLineShape, view: myObservatoryViewOutlet)
@@ -164,17 +162,16 @@ class MainViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: false)
         
-        animateOrbit(image: earthButton.earthEllypseOne)
-        earthButton.earthEllypseOne.layer.speed = 0.3
-        animateOrbit(image: moonEllypse)
-        moonEllypse.layer.speed = 0.3
-        animateOrbit(image: marsEllypse)
-        marsEllypse.layer.speed = 0.3
+        animateOrbit(image: earthCircleOne)
+        earthCircleOne.layer.speed = 0.3
+        animateSatellites(image: earthCircleTwo)
+        earthCircleTwo.layer.speed = 0.2
+        animateOrbit(image: moonCircle)
+        moonCircle.layer.speed = 0.3
+        animateOrbit(image: marsCircle)
+        marsCircle.layer.speed = 0.3
         animateTelescope(image: observatoryTelescope)
         animateSun(image: sun)
-        
-        animateSatellites(image: earthButton.earthEllypseTwo)
-        earthButton.earthEllypseTwo.layer.speed = 0.2
         
         animateLabelOpacity()
         
@@ -201,7 +198,7 @@ class MainViewController: UIViewController {
     
     private func animateLabelOpacity() {
         UILabel.animate(withDuration: 1.5) {
-            self.earthLabel.alpha = 1
+//            self.earthLabel.alpha = 1
             self.ISSLabel.alpha = 1
             self.moonLabel.alpha = 1
             self.marsLabel.alpha = 1
@@ -251,14 +248,7 @@ class MainViewController: UIViewController {
     
     
     private func makeStartingSetting() {
-        view.addSubview(earthButton)
-        view.addSubview(earthLabel)
-        
-        earthButton.translatesAutoresizingMaskIntoConstraints = false
-        earthLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        earthLabel.text = "Welcome to Earth"
-        earthLabel.alpha = 0
+
         ISSLabel.alpha = 0
         moonLabel.alpha = 0
         marsLabel.alpha = 0
@@ -266,14 +256,7 @@ class MainViewController: UIViewController {
         myObservatoryLabel.alpha = 0
         sunLabel.alpha = 0
         sunLabel.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 4)
-        
-        earthButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        earthButton.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        earthButton.widthAnchor.constraint(equalToConstant: 340).isActive = true
-        earthButton.heightAnchor.constraint(equalToConstant: 120).isActive = true
-        
-        earthLabel.bottomAnchor.constraint(equalTo: earthButton.topAnchor, constant: -20).isActive = true
-        earthLabel.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: 170).isActive = true
+
     }
     
 }

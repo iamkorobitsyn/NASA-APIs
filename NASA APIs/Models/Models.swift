@@ -7,7 +7,42 @@
 
 import Foundation
 
-struct Manifest: Decodable {
+struct FetchMoon: Decodable {
+    let collection: Collection
+}
+
+struct Collection: Decodable {
+    let items: [MoonItem]
+    let links: [PageLinks]
+}
+
+struct MoonItem: Decodable {
+    let data: [MoonObject]
+    let links: [MoonLinks]
+}
+
+struct MoonObject: Decodable {
+    let dateCreated: String
+    let description: String
+    
+    enum CodingKeys: String, CodingKey {
+        case dateCreated = "date_created"
+        case description = "description"
+    }
+}
+
+struct MoonLinks: Decodable {
+    let href: String
+}
+
+struct PageLinks: Decodable {
+    let href: String
+}
+
+
+
+
+struct FetchMars: Decodable {
     let photoManifest: PhotoManifest
     
     enum CodingKeys: String, CodingKey {
@@ -43,11 +78,15 @@ struct Photos: Decodable {
 }
 
 
-enum Link: String {
+enum MarsLink: String {
     case curiosityManifest =
             "https://api.nasa.gov/mars-photos/api/v1/manifests/curiosity/?api_key=tqvH1Qo4crHNgeAB8Dg2QPhdZ2AuPOWcx5VkvCSA"
     case opportunityManifest =
             "https://api.nasa.gov/mars-photos/api/v1/manifests/opportunity/?api_key=tqvH1Qo4crHNgeAB8Dg2QPhdZ2AuPOWcx5VkvCSA"
     case spiritManifest =
             "https://api.nasa.gov/mars-photos/api/v1/manifests/spirit/?api_key=tqvH1Qo4crHNgeAB8Dg2QPhdZ2AuPOWcx5VkvCSA"
+}
+
+enum MoonLink: String {
+    case photoLibrary = "https://images-api.nasa.gov/search?q=moon&media_type=image"
 }

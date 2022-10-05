@@ -18,7 +18,7 @@ class NetworkManager {
     
     
     func fetchData(from url: String,
-                   completion: @escaping(Result<Manifest, NetworkError>) -> Void) {
+                   completion: @escaping(Result<FetchMars, NetworkError>) -> Void) {
         
         guard let url = URL(string: url) else {
             completion(.failure(.invalidURL))
@@ -33,7 +33,7 @@ class NetworkManager {
             }
             
             do  {
-                let manifest = try JSONDecoder().decode(Manifest.self, from: data)
+                let manifest = try JSONDecoder().decode(FetchMars.self, from: data)
                 DispatchQueue.main.async {
                     completion(.success(manifest))
                 }
