@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_7" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="SdE-wV-psh">
+    <device id="retina4_7" orientation="portrait" appearance="dark"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
@@ -401,8 +401,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="HI4-hF-j4Z"/>
                     <connections>
+                        <outlet property="EarthLabel" destination="CM6-LF-J3F" id="zw3-q4-4MZ"/>
                         <outlet property="EarthViewOutlet" destination="9h9-QK-aaI" id="oGD-hL-I6i"/>
-                        <outlet property="ISSLabel" destination="Lwy-JY-9rW" id="G5q-0s-OAu"/>
+                        <outlet property="ISSLabel" destination="Lwy-JY-9rW" id="yhl-7f-diq"/>
                         <outlet property="ISSViewOutlet" destination="MZW-0G-C5G" id="eNU-3G-Vv1"/>
                         <outlet property="earthCircleOne" destination="I0I-rd-i2H" id="AmD-l2-FEY"/>
                         <outlet property="earthCircleTwo" destination="Xgy-2Z-7iG" id="4be-pk-WVT"/>
@@ -497,7 +498,6 @@
         <!--Mars View Controller-->
         <scene sceneID="klC-Eu-j0U">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8OR-ys-aEi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController modalTransitionStyle="crossDissolve" modalPresentationStyle="overFullScreen" id="xEg-Na-mAC" customClass="MarsViewController" customModule="NASA_APIs" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eeC-RS-60D">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
@@ -606,6 +606,7 @@
                         <outlet property="test07" destination="UPU-So-uqP" id="5i2-kV-7IE"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8OR-ys-aEi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3182.608695652174" y="-625.44642857142856"/>
         </scene>

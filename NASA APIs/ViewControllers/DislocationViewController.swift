@@ -9,8 +9,6 @@ import UIKit
 
 class DislocationViewController: UIViewController, UITextFieldDelegate, CAAnimationDelegate {
     
-    //MARK: - Properties
-    
     private let firstStarShape = ThinLineShape()
     private let secondStarShape = ThinLineShape()
     private let shapeBezier = ShapeBezier()
@@ -22,8 +20,6 @@ class DislocationViewController: UIViewController, UITextFieldDelegate, CAAnimat
     @IBOutlet weak var ellypsTwo: UIImageView!
     @IBOutlet weak var textContains: UIView!
     @IBOutlet weak var dislocationOutlet: UIButton!
-    
-    //MARK: - ViewDidLoad
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,8 +40,6 @@ class DislocationViewController: UIViewController, UITextFieldDelegate, CAAnimat
         return true
     }
     
-//MARK: - viewDidLayoutSubviews
-    
     override func viewDidLayoutSubviews() {
         gradient.frame = CGRect(x: 0, y: 0, width: view.frame.width,
                                    height: view.frame.height)
@@ -53,8 +47,6 @@ class DislocationViewController: UIViewController, UITextFieldDelegate, CAAnimat
         shapeBezier.firstStarFrame(shapeLayer: firstStarShape, view: self.view)
         shapeBezier.secondStarFrame(shapeLayer: secondStarShape, view: self.view)
     }
-    
-//MARK: - Animating
 
     @IBAction func dislocationButton(_ sender: UIButton) {
     
@@ -109,8 +101,6 @@ class DislocationViewController: UIViewController, UITextFieldDelegate, CAAnimat
         self.view.alpha = 0
         performSegue(withIdentifier: "earthID", sender: nil)
     }
-   
-//MARK: - Starting Settings
     
     private func makeStartingSettings() {
         textContains.backgroundColor = .none

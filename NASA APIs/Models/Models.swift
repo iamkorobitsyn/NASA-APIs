@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct FetchMoon: Decodable {
+struct FetchLibrary: Decodable {
     let collection: Collection
 }
 
