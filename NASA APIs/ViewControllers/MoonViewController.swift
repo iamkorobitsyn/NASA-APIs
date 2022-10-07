@@ -11,7 +11,9 @@ class MoonViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     private let header = HeaderView()
+    private let tagsView = TagsView()
     private var data: FetchLibrary?
+    
 
     
     override func viewDidLoad() {
@@ -56,10 +58,22 @@ extension MoonViewController: UITableViewDataSource, UITableViewDelegate {
         return data?.collection.items.count ?? 0
     }
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        50
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return tagsView.viewFrame
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        let text = data?.collection.items[indexPath.row].data
-        cell.textLabel?.text = "Hello"
+        let text = data?.collection.items[indexPath.row].data[indexPath.startIndex]
+        cell.textLabel?.text = text?.description
         
         return cell
     }

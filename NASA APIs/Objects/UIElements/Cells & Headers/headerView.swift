@@ -17,7 +17,7 @@ class HeaderView: UIView {
         headerFrame.insertSubview(headerImage, at: 1)
         headerImage.translatesAutoresizingMaskIntoConstraints = false
         headerImage.widthAnchor.constraint(equalTo: headerFrame.widthAnchor).isActive = true
-        headerImage.heightAnchor.constraint(equalToConstant: 150).isActive = true
+        headerImage.heightAnchor.constraint(equalToConstant: 170).isActive = true
         headerImage.clipsToBounds = true
         headerImage.contentMode = .scaleAspectFill
     }
