@@ -9,15 +9,25 @@ import UIKit
 
 class ImageCell: UITableViewCell {
 
+    @IBOutlet weak var picture: UIImageView!
+    @IBOutlet weak var pictureDescription: UILabel!
+    @IBOutlet weak var date: UILabel!
+    
+    @IBOutlet weak var viewContains: UIView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        viewContains?.backgroundColor = UIColor.systemGray4.withAlphaComponent(0.5)
+        viewContains?.layer.cornerRadius = 7
+//        picture?.layer.cornerRadius = 7
+//        picture?.layer.borderWidth = 0.2
+//        picture?.layer.borderColor = UIColor.label.cgColor
+        
+//        viewContains?.alpha = 0
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
 }

@@ -9,17 +9,13 @@ import UIKit
 
 class TagsCell: UICollectionViewCell {
 
-    @IBOutlet weak var button: UIButton!
+    @IBOutlet weak var label: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        button.layer.cornerRadius = 15
-        button.backgroundColor = UIColor.tertiarySystemGroupedBackground
-        button.alpha = 0.8
-        button.titleLabel?.tintColor = UIColor.label
-        
+        label.textColor = UIColor.label.withAlphaComponent(0.8)
+        label.font = UIFont.systemFont(ofSize: 18, weight: .thin)
     }
-    @IBAction func touch(_ sender: UIButton) {
-    }
+
     
 }

@@ -10,7 +10,7 @@ import UIKit
 
 class TagsView: UIView {
     
-    let textArray = ["Brat", "Brat Bratan", "Brat Bratan Bratishka", "Bro"]
+    let textArray = ["Moon", "Landing on the moon", "Brat Bratan Bratishka", "Bro", "Brat Bratan Bratishka", "Brat Bratan Bratishka"]
     
     let viewFrame = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
     var tagsCollection: UICollectionView = {
@@ -26,10 +26,13 @@ class TagsView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         viewFrame.addSubview(tagsCollection)
-        tagsCollection.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 55)
+        tagsCollection.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50)
+        tagsCollection.backgroundColor = UIColor.black.withAlphaComponent(0)
         tagsCollection.dataSource = self
         tagsCollection.delegate = self
         tagsCollection.register(UINib(nibName: "TagsCell", bundle: nil), forCellWithReuseIdentifier: "TagsCell")
+       
+        tagsCollection.autoresizingMask = [.flexibleWidth, .flexibleHeight]
     }
     
     required init?(coder: NSCoder) {
@@ -41,32 +44,30 @@ class TagsView: UIView {
 extension TagsView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     
-    
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return textArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        if let cell = tagsCollection.dequeueReusableCell(
-            withReuseIdentifier: "TagsCell", for: indexPath) as? TagsCell {
-            cell.button.setTitle(textArray[indexPath.row], for: .normal)
-            
+        if let cell = tagsCollection.dequeueReusableCell(withReuseIdentifier: "TagsCell", for: indexPath) as? TagsCell {
+            cell.label.text = textArray[indexPath.row]
+            cell.backgroundColor = UIColor.systemGray4.withAlphaComponent(0.7)
+            cell.layer.cornerRadius = 7
             return cell
         }
         return UICollectionViewCell()
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let label = UILabel(frame: CGRect.zero)
-                label.text = textArray[indexPath.item]
-                label.sizeToFit()
-                return CGSize(width: label.frame.width + 25, height: 55)
+        let updateSize = UILabel(frame: CGRect.zero)
+        updateSize.text = textArray[indexPath.item]
+        updateSize.sizeToFit()
+        return CGSize(width: updateSize.frame.width + 30, height: 35)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(indexPath)
+        print(indexPath.row)
     }
     
     

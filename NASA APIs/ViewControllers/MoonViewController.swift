@@ -18,11 +18,16 @@ class MoonViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(UINib(nibName: "ImageCell", bundle: nil), forCellReuseIdentifier: "ImageCell")
         header.headerImage.image = UIImage(named: "headerMoon")
         tableView.tableHeaderView = header.headerFrame
         navigationSettings()
         fetchData(from: MoonLink.photoLibrary.rawValue)
+        tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+    }
+    
+    override func viewDidLayoutSubviews() {
+        tableView.frame = view.frame
     }
     
     private func fetchData(from url: String?) {
@@ -70,11 +75,30 @@ extension MoonViewController: UITableViewDataSource, UITableViewDelegate {
         return tagsView.viewFrame
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        500
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        let text = data?.collection.items[indexPath.row].data[indexPath.startIndex]
-        cell.textLabel?.text = text?.description
-        
-        return cell
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "ImageCell", for: indexPath) as? ImageCell {
+            let pictureDescription = data?.collection.items[indexPath.row].data[indexPath.startIndex]
+            let date = pictureDescription?.dateCreated
+            let image = data?.collection.items[indexPath.row].links[indexPath.startIndex]
+            cell.pictureDescription?.text = pictureDescription?.description
+            cell.date?.text = date
+
+            NetworkManager.shared.fetchImage(from: image?.href ?? "") { result in
+                switch result {
+                case .success(let image):
+                    cell.picture.image = UIImage(data: image)
+                case .failure(let error):
+                    print(error)
+                }
+            }
+            
+            
+            return cell
+        }
+        return UITableViewCell()
     }
 }
