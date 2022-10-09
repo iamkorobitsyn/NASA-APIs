@@ -11,11 +11,9 @@ class MarsViewController: UIViewController {
     
     private let backgroundNavigation = UIView()
     
-    private let navigationView = CustomNavigationViewWithTheEarth()
-    
     private let animator = Animator()
     
-    var manifest: Manifest?
+    var manifest: FetchMars?
     
     
     @IBOutlet weak var test01: UILabel!
@@ -28,9 +26,11 @@ class MarsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        title = "Mars"
         customNavigationController()
         
-        fetchData(from: Link.curiosityManifest.rawValue)
+        fetchData(from: MarsLink.curiosityManifest.rawValue)
        
     }
     
@@ -62,31 +62,6 @@ class MarsViewController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: false)
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             title: "Mars", style: .plain, target: nil, action: nil)
-        let imageView = navigationView
-        navigationItem.titleView = imageView
-        animateTwo(image: imageView.firstNavigationRing)
-        animateOne(image: imageView.secondNavigationRing)
         
-        view.addSubview(backgroundNavigation)
-
-        backgroundNavigation.translatesAutoresizingMaskIntoConstraints = false
-        backgroundNavigation.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
-        backgroundNavigation.heightAnchor.constraint(equalToConstant: 105).isActive = true
-        backgroundNavigation.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        backgroundNavigation.backgroundColor = UIColor.downGradient
     }
-    
-    private func animateTwo(image: UIImageView) {
-        let CAGroup = animator.animateCircleStartVC(to: -.pi * 2.0)
-        CAGroup.speed = 0.3
-        image.layer.add(CAGroup, forKey: nil)
-    }
-    
-    private func animateOne(image: UIImageView) {
-        let CAGroup = animator.animateCircleStartVC(to: .pi * 2.0)
-        CAGroup.speed = 0.3
-        image.layer.add(CAGroup, forKey: nil)
-    }
-    
-    
 }

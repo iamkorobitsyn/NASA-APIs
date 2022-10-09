@@ -11,10 +11,7 @@ class NavigationController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationBar.tintColor = UIColor.whiteColor.withAlphaComponent(0.7)
-    }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+        navigationBar.prefersLargeTitles = true
+        navigationBar.tintColor = UIColor.label
     }
 }

@@ -10,7 +10,12 @@ import UIKit
 class MainViewController: UIViewController {
     
     var timer = Timer()
+    
+    private var gradient = CAGradientLayer()
+    private let animator = Animator()
+    private let shapeBezier = ShapeBezier()
 
+    @IBOutlet weak var EarthViewOutlet: UIView!
     @IBOutlet weak var ISSViewOutlet: UIView!
     @IBOutlet weak var moonViewOutlet: UIView!
     @IBOutlet weak var marsViewOutlet: UIView!
@@ -18,10 +23,8 @@ class MainViewController: UIViewController {
     @IBOutlet weak var myObservatoryViewOutlet: UIView!
     @IBOutlet weak var sunViewOutlet: UIView!
     
-    private var gradient = CAGradientLayer()
     
-    private let earthButton = EarthButton()
-    private let earthLabel = EarthLabel()
+    @IBOutlet weak var EarthLabel: UILabel!
     @IBOutlet weak var ISSLabel: UILabel!
     @IBOutlet weak var moonLabel: UILabel!
     @IBOutlet weak var marsLabel: UILabel!
@@ -29,13 +32,12 @@ class MainViewController: UIViewController {
     @IBOutlet weak var myObservatoryLabel: UILabel!
     @IBOutlet weak var sunLabel: UILabel!
     
-    @IBOutlet weak var moonEllypse: UIImageView!
-    @IBOutlet weak var marsEllypse: UIImageView!
+    @IBOutlet weak var earthCircleOne: UIImageView!
+    @IBOutlet weak var earthCircleTwo: UIImageView!
+    @IBOutlet weak var moonCircle: UIImageView!
+    @IBOutlet weak var marsCircle: UIImageView!
     @IBOutlet weak var observatoryTelescope: UIImageView!
     @IBOutlet weak var sun: UIImageView!
-    
-    
-    private let animator = Animator()
     
     private let firstLineShape = ThinLineShape()
     private let secondLineShape = ThinLineShape()
@@ -45,7 +47,7 @@ class MainViewController: UIViewController {
     
     private let ISSpilling = ThinLineShape()
     private let probesPilling = ThinLineShape()
-    private let shapeBezier = ShapeBezier()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,62 +55,50 @@ class MainViewController: UIViewController {
         navigationItem.backBarButtonItem =
         UIBarButtonItem(title: "To orbit", style: .plain, target: nil, action: nil)
         
-        createLines()
-        gradient = addGradient()
         makeStartingSetting()
-        
-        
-        ISSViewOutlet.backgroundColor = .none
-        moonViewOutlet.backgroundColor = .none
-        marsViewOutlet.backgroundColor = .none
-        spaceProbesViewOutlet.backgroundColor = .none
-        myObservatoryViewOutlet.backgroundColor = .none
-        
+        createSettingsOfGesture()
+        createLines()
         pillingProbes()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(true, animated: false)
         
-        let tapEarth = UITapGestureRecognizer(target: self, action: #selector(didTapEarth))
-        let tapISS = UITapGestureRecognizer(target: self, action: #selector(didTapISS))
-        let tapMoon = UITapGestureRecognizer(target: self, action: #selector(didTapMoon))
-        let tapMars = UITapGestureRecognizer(target: self, action: #selector(didTapMars))
-        let tapProbes = UITapGestureRecognizer(target: self, action: #selector(didTapProbes))
-                                             
-        earthButton.addGestureRecognizer(tapEarth)
-        ISSViewOutlet.addGestureRecognizer(tapISS)
-        moonViewOutlet.addGestureRecognizer(tapMoon)
-        marsViewOutlet.addGestureRecognizer(tapMars)
-        spaceProbesViewOutlet.addGestureRecognizer(tapProbes)
-    }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
-    @objc func didTapEarth() {
-        print("earth")
+        animateOrbit(image: earthCircleOne)
+        earthCircleOne.layer.speed = 0.3
+        animateSatellites(image: earthCircleTwo)
+        earthCircleTwo.layer.speed = 0.2
+        animateOrbit(image: moonCircle)
+        moonCircle.layer.speed = 0.3
+        animateOrbit(image: marsCircle)
+        marsCircle.layer.speed = 0.3
+        animateTelescope(image: observatoryTelescope)
+        animateSun(image: sun)
         
-        performSegue(withIdentifier: "toEarth", sender: nil)
- 
+        animateLabelOpacity()
+        
+        animateLine(shape: firstLineShape,
+                    shapeTwo: secondLineShape,
+                    shapeThree: thirdlineShape,
+                    shapeFour: fourthLineShape,
+                    shapeFive: fiveLineShape)
+        
+        pillingISS(shape: ISSpilling)
     }
     
-    @objc func didTapISS() {
-        print("ISS")
-//        let vc = TestViewController()
-//        navigationController?.pushViewController(vc, animated: true)
+    override func viewDidLayoutSubviews() {
+        shapeBezier.firstLineFrame(shapeLayer: firstLineShape, view: EarthViewOutlet)
+        shapeBezier.secondLineFrame(shapeLayer: secondLineShape, view: ISSViewOutlet)
+        shapeBezier.thirdlineFrame(shapeLayer: thirdlineShape, view: spaceProbesViewOutlet)
+        shapeBezier.fourthLineFrame(shapeLayer: fourthLineShape, view: myObservatoryViewOutlet)
+        shapeBezier.fiveLineFrame(shapeLayer: fiveLineShape, view: sunViewOutlet)
+        shapeBezier.ISSPilling(shapeLayer: ISSpilling, view: ISSViewOutlet)
+        shapeBezier.probesPilling(shapeLayer: probesPilling, view: spaceProbesViewOutlet)
+        
+        gradient = addGradient()
+        gradient.frame = CGRect(x: 0, y: 0, width: view.frame.width,
+                                   height: view.frame.height)
     }
-    
-    @objc func didTapMoon() {
-        print("Moon")
-    }
-    
-    @objc func didTapMars() {
-        print("mars")
-        performSegue(withIdentifier: "marsID", sender: nil)
-    }
-    
-    @objc func didTapProbes() {
-        print("probes")
-    }
-    
     
     func addGradient() -> CAGradientLayer {
         let gradient = CAGradientLayer()
@@ -122,8 +112,45 @@ class MainViewController: UIViewController {
         return gradient
     }
     
+    private func createSettingsOfGesture() {
+        let tapEarth = UITapGestureRecognizer(target: self, action: #selector(didTapEarth))
+        let tapISS = UITapGestureRecognizer(target: self, action: #selector(didTapISS))
+        let tapMoon = UITapGestureRecognizer(target: self, action: #selector(didTapMoon))
+        let tapMars = UITapGestureRecognizer(target: self, action: #selector(didTapMars))
+        let tapProbes = UITapGestureRecognizer(target: self, action: #selector(didTapProbes))
+                                             
+        EarthViewOutlet.addGestureRecognizer(tapEarth)
+        ISSViewOutlet.addGestureRecognizer(tapISS)
+        moonViewOutlet.addGestureRecognizer(tapMoon)
+        marsViewOutlet.addGestureRecognizer(tapMars)
+        spaceProbesViewOutlet.addGestureRecognizer(tapProbes)
+    }
+    
+    @objc func didTapEarth() {
+        print("earth")
+        performSegue(withIdentifier: "toEarth", sender: nil)
+    }
+    
+    @objc func didTapISS() {
+        print("ISS")
+    }
+    
+    @objc func didTapMoon() {
+        print("Moon")
+        performSegue(withIdentifier: "moonID", sender: nil)
+    }
+    
+    @objc func didTapMars() {
+        print("mars")
+        performSegue(withIdentifier: "marsID", sender: nil)
+    }
+    
+    @objc func didTapProbes() {
+        print("probes")
+    }
+    
     private func createLines() {
-        view.layer.insertSublayer(firstLineShape, at: 0)
+        EarthViewOutlet.layer.insertSublayer(firstLineShape, at: 0)
         ISSViewOutlet.layer.insertSublayer(secondLineShape, at: 0)
         spaceProbesViewOutlet.layer.insertSublayer(thirdlineShape, at: 0)
         myObservatoryViewOutlet.layer.insertSublayer(fourthLineShape, at: 0)
@@ -148,48 +175,7 @@ class MainViewController: UIViewController {
         
     }
     
-    override func viewDidLayoutSubviews() {
-        shapeBezier.firstLineFrame(shapeLayer: firstLineShape, view: self.view)
-        shapeBezier.secondLineFrame(shapeLayer: secondLineShape, view: ISSViewOutlet)
-        shapeBezier.thirdlineFrame(shapeLayer: thirdlineShape, view: spaceProbesViewOutlet)
-        shapeBezier.fourthLineFrame(shapeLayer: fourthLineShape, view: myObservatoryViewOutlet)
-        shapeBezier.fiveLineFrame(shapeLayer: fiveLineShape, view: sunViewOutlet)
-        shapeBezier.ISSPilling(shapeLayer: ISSpilling, view: ISSViewOutlet)
-        shapeBezier.probesPilling(shapeLayer: probesPilling, view: spaceProbesViewOutlet)
-        gradient.frame = CGRect(x: 0, y: 0, width: view.frame.width,
-                                   height: view.frame.height)
-      
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        navigationController?.setNavigationBarHidden(true, animated: false)
-        
-        animateOrbit(image: earthButton.earthEllypseOne)
-        earthButton.earthEllypseOne.layer.speed = 0.3
-        animateOrbit(image: moonEllypse)
-        moonEllypse.layer.speed = 0.3
-        animateOrbit(image: marsEllypse)
-        marsEllypse.layer.speed = 0.3
-        animateTelescope(image: observatoryTelescope)
-        animateSun(image: sun)
-        
-        animateSatellites(image: earthButton.earthEllypseTwo)
-        earthButton.earthEllypseTwo.layer.speed = 0.2
-        
-        animateLabelOpacity()
-        
-        animateLine(shape: firstLineShape,
-                    shapeTwo: secondLineShape,
-                    shapeThree: thirdlineShape,
-                    shapeFour: fourthLineShape,
-                    shapeFive: fiveLineShape)
-        
-        pillingISS(shape: ISSpilling)
-        
-    }
-
-    
-    func pillingProbes() {
+    private func pillingProbes() {
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { timer in
             if self.probesPilling.strokeColor == UIColor.whiteColor.withAlphaComponent(0.5).cgColor {
                 self.probesPilling.strokeColor = UIColor.red.cgColor
@@ -199,9 +185,14 @@ class MainViewController: UIViewController {
         })
     }
     
+    private func pillingISS(shape: CAShapeLayer) {
+        let animate = animator.pillingAnimate()
+        shape.add(animate, forKey: nil)
+    }
+    
     private func animateLabelOpacity() {
         UILabel.animate(withDuration: 1.5) {
-            self.earthLabel.alpha = 1
+            self.EarthLabel.alpha = 1
             self.ISSLabel.alpha = 1
             self.moonLabel.alpha = 1
             self.marsLabel.alpha = 1
@@ -210,12 +201,7 @@ class MainViewController: UIViewController {
             self.sunLabel.alpha = 0.8
         }
     }
-    
-    private func pillingISS(shape: CAShapeLayer) {
-        let animate = animator.pillingAnimate()
-        shape.add(animate, forKey: nil)
-    }
-    
+
     private func animateLine(shape: CAShapeLayer,
                              shapeTwo: CAShapeLayer,
                              shapeThree: CAShapeLayer,
@@ -249,16 +235,8 @@ class MainViewController: UIViewController {
         image.layer.add(animate, forKey: nil)
     }
     
-    
     private func makeStartingSetting() {
-        view.addSubview(earthButton)
-        view.addSubview(earthLabel)
-        
-        earthButton.translatesAutoresizingMaskIntoConstraints = false
-        earthLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        earthLabel.text = "Welcome to Earth"
-        earthLabel.alpha = 0
+        EarthLabel.alpha = 0
         ISSLabel.alpha = 0
         moonLabel.alpha = 0
         marsLabel.alpha = 0
@@ -266,14 +244,5 @@ class MainViewController: UIViewController {
         myObservatoryLabel.alpha = 0
         sunLabel.alpha = 0
         sunLabel.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 4)
-        
-        earthButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        earthButton.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        earthButton.widthAnchor.constraint(equalToConstant: 340).isActive = true
-        earthButton.heightAnchor.constraint(equalToConstant: 120).isActive = true
-        
-        earthLabel.bottomAnchor.constraint(equalTo: earthButton.topAnchor, constant: -20).isActive = true
-        earthLabel.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: 170).isActive = true
     }
-    
 }

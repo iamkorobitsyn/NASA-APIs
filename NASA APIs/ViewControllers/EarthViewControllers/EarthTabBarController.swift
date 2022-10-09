@@ -11,8 +11,7 @@ import UIKit
 class EarthTabBarController: UITabBarController {
     
     //MARK: - Properties
-    
-    private let navigationView = CustomNavigationViewWithTheEarth()
+
     
     let navigationBackground = UIView()
     
@@ -98,18 +97,6 @@ class EarthTabBarController: UITabBarController {
         navigationController?.setNavigationBarHidden(false, animated: false)
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             title: "Earth ", style: .plain, target: nil, action: nil)
-        let imageView = navigationView
-        navigationItem.titleView = imageView
-        animateTwo(image: imageView.firstNavigationRing)
-        animateOne(image: imageView.secondNavigationRing)
-        
-        view.addSubview(navigationBackground)
-
-        navigationBackground.translatesAutoresizingMaskIntoConstraints = false
-        navigationBackground.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
-        navigationBackground.heightAnchor.constraint(equalToConstant: 100).isActive = true
-        navigationBackground.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        navigationBackground.backgroundColor = UIColor.black.withAlphaComponent(0.8)
     }
     
     private func animateTwo(image: UIImageView) {

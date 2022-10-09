@@ -59,12 +59,8 @@ class ShapeBezier {
         
         shapeLayer.frame = view.bounds
         let path = UIBezierPath()
-        path.move(to: CGPoint(x: view.frame.width / 2 + -170, y: view.frame.height / 2))
-        path.addLine(to: CGPoint(x: view.frame.width / 2 + -170, y: view.frame.height / 2 + -50))
-        path.addCurve(to: CGPoint(x: view.frame.width / 2 + -140, y: view.frame.height / 2 + -80),
-                      controlPoint1: CGPoint(x: view.frame.width / 2 + -170, y: view.frame.height / 2 + -70 ),
-                      controlPoint2: CGPoint(x: view.frame.width / 2 + -160, y: view.frame.height / 2 + -80 ))
-        path.addLine(to: CGPoint(x: view.frame.width / 2 + 170, y: view.frame.height / 2 + -80))
+        path.move(to: CGPoint(x: view.frame.width / 2 , y: view.frame.height / 2 + 60))
+        path.addLine(to: CGPoint(x: view.frame.width / 2 + 100, y: view.frame.height / 2 + 60))
         shapeLayer.path = path.cgPath
     }
     
@@ -72,28 +68,24 @@ class ShapeBezier {
         
         shapeLayer.frame = view.bounds
         let path = UIBezierPath()
-        path.move(to: CGPoint(x: view.frame.width / 2 + 50, y: view.frame.height / 2 - 10))
-        path.addLine(to: CGPoint(x: view.frame.width / 2 + 50, y: view.frame.height / 2 + 20))
-        path.addCurve(to: CGPoint(x: view.frame.width / 2 + 20, y: view.frame.height / 2 + 50),
-                      controlPoint1: CGPoint(x: view.frame.width / 2 + 50, y: view.frame.height / 2 + 30 ),
-                      controlPoint2: CGPoint(x: view.frame.width / 2 + 50, y: view.frame.height / 2 + 50 ))
-        path.addLine(to: CGPoint(x: view.frame.width / 2 + -80, y: view.frame.height / 2 + 50))
+        path.move(to: CGPoint(x: view.frame.width / 2 + 50, y: view.frame.height / 2 + 50))
+        path.addLine(to: CGPoint(x: view.frame.width / 2 + -60, y: view.frame.height / 2 + 50))
         shapeLayer.path = path.cgPath
     }
     
     func thirdlineFrame(shapeLayer: CAShapeLayer, view: UIView) {
         shapeLayer.frame = view.bounds
         let path = UIBezierPath()
-        path.move(to: CGPoint(x: view.frame.width / 2 - 30, y: view.frame.height / 2 - 30))
-        path.addLine(to: CGPoint(x: view.frame.width / 2 + 140, y: view.frame.height / 2 - 30))
+        path.move(to: CGPoint(x: view.frame.width / 2 - 100 , y: view.frame.height / 2 + 40))
+        path.addLine(to: CGPoint(x: view.frame.width / 2 + 50, y: view.frame.height / 2 + 40))
         shapeLayer.path = path.cgPath
     }
     
     func fourthLineFrame(shapeLayer: CAShapeLayer, view: UIView) {
         shapeLayer.frame = view.bounds
         let path = UIBezierPath()
-        path.move(to: CGPoint(x: view.frame.width / 2 + 60, y: view.frame.height / 2 + 45))
-        path.addLine(to: CGPoint(x: view.frame.width / 2 - 150, y: view.frame.height / 2 + 45))
+        path.move(to: CGPoint(x: view.frame.width / 2 + 127, y: view.frame.height / 2 + 35))
+        path.addLine(to: CGPoint(x: view.frame.width / 2 - 70, y: view.frame.height / 2 + 35))
         shapeLayer.path = path.cgPath
     }
     
@@ -106,13 +98,15 @@ class ShapeBezier {
     }
     func ISSPilling(shapeLayer: CAShapeLayer, view: UIView) {
         shapeLayer.frame = view.bounds
-        let path = UIBezierPath(arcCenter: CGPoint(x: view.frame.width / 2 + 35, y: view.frame.height / 2 + 2), radius: 0.2, startAngle: 50, endAngle: 100, clockwise: true)
+        let path = UIBezierPath(arcCenter: CGPoint(x: view.frame.width / 2 + 40,
+                                                   y: view.frame.height / 2 + 30), radius: 0.2, startAngle: 50, endAngle: 100, clockwise: true)
         shapeLayer.path = path.cgPath
     }
     
     func probesPilling(shapeLayer: CAShapeLayer, view: UIView) {
         
-        let path = UIBezierPath(arcCenter: CGPoint(x: view.frame.width / 2 + 75, y: view.frame.height / 2 + -40), radius: 0.2, startAngle: 50, endAngle: 100, clockwise: true)
+        let path = UIBezierPath(arcCenter: CGPoint(x: view.frame.width / 2 - 95,
+                                                   y: view.frame.height / 2 + 20 ), radius: 0.2, startAngle: 50, endAngle: 100, clockwise: true)
         shapeLayer.path = path.cgPath
     }
     
