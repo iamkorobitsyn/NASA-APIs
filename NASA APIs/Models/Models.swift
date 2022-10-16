@@ -87,6 +87,18 @@ enum MarsLink: String {
             "https://api.nasa.gov/mars-photos/api/v1/manifests/spirit/?api_key=tqvH1Qo4crHNgeAB8Dg2QPhdZ2AuPOWcx5VkvCSA"
 }
 
-enum MoonLink: String {
-    case photoLibrary = "https://images-api.nasa.gov/search?q=moon&media_type=image"
+
+
+struct SearchNamesAndUrl {
+    let moonNames = ["Lunar Photography", "Lunar Surface", "Lunar Bases", "Apollo Project", "Lunar Landing Sites", "Lunar Reconnaissance Orbiter LRO", "Moon"]
+    
+    let URL = ["https://images-api.nasa.gov/search?q=lunar%20Photography&media_type=image",
+               "https://images-api.nasa.gov/search?q=lunar%20Surface&media_type=image",
+               "https://images-api.nasa.gov/search?q=lunar%20Bases&media_type=image",
+               "https://images-api.nasa.gov/search?q=apollo%20project&media_type=image",
+               "https://images-api.nasa.gov/search?q=lunar%20Landing%20Sites&media_type=image",
+               "https://images-api.nasa.gov/search?q=lunar%20Reconnaissance%20Orbiter%20LRO%20LRO&media_type=image",
+               "https://images-api.nasa.gov/search?q=moon&media_type=image"]
 }
+
+

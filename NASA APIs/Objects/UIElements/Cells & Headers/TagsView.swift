@@ -10,8 +10,9 @@ import UIKit
 
 class TagsView: UIView {
     
-    let textArray = ["Moon", "Landing on the moon", "Brat Bratan Bratishka", "Bro", "Brat Bratan Bratishka", "Brat Bratan Bratishka"]
-    
+    var delegate: Delegate?
+    var selectedCell: IndexPath = [0, 0]
+
     let viewFrame = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
     var tagsCollection: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -21,7 +22,6 @@ class TagsView: UIView {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -45,15 +45,20 @@ extension TagsView: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return textArray.count
+        return SearchNamesAndUrl.init().moonNames.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        if let cell = tagsCollection.dequeueReusableCell(withReuseIdentifier: "TagsCell", for: indexPath) as? TagsCell {
-            cell.label.text = textArray[indexPath.row]
+        if let cell = tagsCollection.dequeueReusableCell(withReuseIdentifier: "TagsCell",
+                                                         for: indexPath) as? TagsCell {
+            cell.label.text = SearchNamesAndUrl.init().moonNames[indexPath.row]
             cell.backgroundColor = UIColor.systemGray4.withAlphaComponent(0.7)
             cell.layer.cornerRadius = 7
+            
+            tagsCollection.cellForItem(at: [0, 0])?.backgroundColor =
+            UIColor.red.withAlphaComponent(0.5)
+            
             return cell
         }
         return UICollectionViewCell()
@@ -61,14 +66,19 @@ extension TagsView: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let updateSize = UILabel(frame: CGRect.zero)
-        updateSize.text = textArray[indexPath.item]
+        updateSize.text = SearchNamesAndUrl.init().moonNames[indexPath.item]
         updateSize.sizeToFit()
         return CGSize(width: updateSize.frame.width + 30, height: 35)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(indexPath.row)
+        
+        tagsCollection.cellForItem(at: selectedCell)?.backgroundColor =
+        UIColor.systemGray4.withAlphaComponent(0.7)
+        tagsCollection.cellForItem(at: indexPath)?.backgroundColor =
+        UIColor.red.withAlphaComponent(0.5)
+        selectedCell = indexPath
+        delegate?.update(index: indexPath.row)
+        
     }
-    
-    
 }

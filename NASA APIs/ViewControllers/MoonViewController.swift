@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol Delegate: AnyObject {
+    func update(index: Int)
+}
+
 class MoonViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
@@ -14,7 +18,10 @@ class MoonViewController: UIViewController {
     private let tagsView = TagsView()
     private var data: FetchLibrary?
     
-
+    var tags = TagsView()
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,9 +29,11 @@ class MoonViewController: UIViewController {
         header.headerImage.image = UIImage(named: "headerMoon")
         tableView.tableHeaderView = header.headerFrame
         navigationSettings()
-        fetchData(from: MoonLink.photoLibrary.rawValue)
+        fetchData(from: SearchNamesAndUrl.init().URL[0])
         tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        tagsView.delegate = self
     }
+    
     
     override func viewDidLayoutSubviews() {
         tableView.frame = view.frame
@@ -56,7 +65,9 @@ class MoonViewController: UIViewController {
             title: "Nasa repository", style: .plain, target: nil, action: nil)
         title = "Moon"
     }
+    
 }
+
 
 extension MoonViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -75,30 +86,44 @@ extension MoonViewController: UITableViewDataSource, UITableViewDelegate {
         return tagsView.viewFrame
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        500
-    }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "ImageCell", for: indexPath) as? ImageCell {
+            
             let pictureDescription = data?.collection.items[indexPath.row].data[indexPath.startIndex]
-            let date = pictureDescription?.dateCreated
             let image = data?.collection.items[indexPath.row].links[indexPath.startIndex]
             cell.pictureDescription?.text = pictureDescription?.description
-            cell.date?.text = date
-
+            cell.selectionStyle = .none
+            
             NetworkManager.shared.fetchImage(from: image?.href ?? "") { result in
                 switch result {
                 case .success(let image):
-                    cell.picture.image = UIImage(data: image)
+                    cell.pictureOutlet.image = UIImage(data: image)
+                    cell.activityIndicatorOutlet.stopAnimating()
+                    cell.activityIndicatorOutlet.isHidden = true
                 case .failure(let error):
                     print(error)
                 }
             }
             
+            cell.completion = {
+                tableView.beginUpdates()
+                tableView.endUpdates()
+            }
+            
+            //            if cell.pictureDescription.text?.count ?? 0 < 216 {
+            //                cell.deployButtonOutlet.isHidden = true
+            //            }
             
             return cell
         }
         return UITableViewCell()
+    }
+}
+
+extension MoonViewController: Delegate {
+    func update(index: Int) {
+        fetchData(from: SearchNamesAndUrl.init().URL[index])
+        self.tableView.reloadData()
+        print(index)
     }
 }
