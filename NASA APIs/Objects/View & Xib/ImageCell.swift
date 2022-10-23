@@ -20,21 +20,10 @@ class ImageCell: UITableViewCell {
     
     private var symbols: Int = 0
     
-    
     override func awakeFromNib() {
         super.awakeFromNib()
-        pictureOutlet?.layer.cornerRadius = 10
-        pictureOutlet?.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
-        buttonsViewOutlet?.layer.cornerRadius = 10
-        buttonsViewOutlet?.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-        addButtonOutlet?.layer.cornerRadius = 10
-        glassSeeButtonOutlet.layer.cornerRadius = 10
-        pictureDescription?.numberOfLines = 2
-        activityIndicatorOutlet.startAnimating()
-
     }
 
-    
     @IBAction func testAction(_ sender: UIButton) {
         
         guard let symbols = pictureDescription.text?.count else {return}
@@ -52,8 +41,18 @@ class ImageCell: UITableViewCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        addButtonOutlet?.layer.cornerRadius = 10
+        addButtonOutlet?.backgroundColor = .none
+        glassSeeButtonOutlet.layer.cornerRadius = 10
+        glassSeeButtonOutlet.backgroundColor = .none
+        pictureDescription?.numberOfLines = 2
+        
+        
+        if pictureDescription.text?.count ?? 0 < 100{
+            deployButtonOutlet.isHidden = true
+        } else if pictureDescription.text?.count ?? 0 > 100 {
+            deployButtonOutlet.isHidden = false
+        }
     }
-    
 }
 

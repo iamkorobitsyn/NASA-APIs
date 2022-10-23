@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol Delegate: AnyObject {
+protocol MoonViewControllerDelegate: AnyObject {
     func update(index: Int)
 }
 
@@ -15,37 +15,52 @@ class MoonViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     private let header = HeaderView()
-    private let tagsView = TagsView()
+    private let tagsCollectionView = TagsCollectionView()
     private var data: FetchLibrary?
     
-    var tags = TagsView()
+    var delegate: TagsCollectionViewDelegate?
     
-    
-    
+    var spaceObject: SpaceObject?
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(UINib(nibName: "ImageCell", bundle: nil), forCellReuseIdentifier: "ImageCell")
+        
+        guard let test = self.spaceObject?.title else {return}
+        delegate?.updatee(object: test)
+        
+        tagsCollectionView.getspaceObject = spaceObject?.title
+        tagsCollectionView.delegate = self
+        
+        
+        
+        
+        createTableView()
+        
+    }
+
+    
+    private func createTableView() {
+        tableView.register(UINib(nibName: "ImageCell", bundle: nil),
+                           forCellReuseIdentifier: "ImageCell")
+        tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        tableView.separatorStyle = .none
+        
         header.headerImage.image = UIImage(named: "headerMoon")
         tableView.tableHeaderView = header.headerFrame
-        navigationSettings()
-        fetchData(from: SearchNamesAndUrl.init().URL[0])
-        tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        tagsView.delegate = self
-    }
-    
-    
-    override func viewDidLayoutSubviews() {
-        tableView.frame = view.frame
+        
+        
+        
+        fetchData(from: spaceObject?.link[0])
     }
     
     private func fetchData(from url: String?) {
-        NetworkManager.shared.nasaLibrary(from: url ?? "") { result in
+        NetworkManager.shared.fetchLibrary(from: url ?? "") { result in
             switch result {
             case.success(let success):
                 self.data = success
+        
                 DispatchQueue.main.async {
-                    self.getData()
                     self.tableView.reloadData()
                 }
             case.failure(let error):
@@ -54,21 +69,12 @@ class MoonViewController: UIViewController {
         }
     }
     
-    private func getData() {
-        print("Hello")
-        print(data?.collection.items.count ?? 0)
-    }
-    
-    private func navigationSettings() {
-        navigationController?.setNavigationBarHidden(false, animated: false)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(
-            title: "Nasa repository", style: .plain, target: nil, action: nil)
-        title = "Moon"
+    override func viewDidLayoutSubviews() {
+        tableView.frame = view.frame
     }
     
 }
-
-
+    
 extension MoonViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data?.collection.items.count ?? 0
@@ -83,7 +89,7 @@ extension MoonViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return tagsView.viewFrame
+        return tagsCollectionView.viewFrame
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -94,36 +100,29 @@ extension MoonViewController: UITableViewDataSource, UITableViewDelegate {
             cell.pictureDescription?.text = pictureDescription?.description
             cell.selectionStyle = .none
             
-            NetworkManager.shared.fetchImage(from: image?.href ?? "") { result in
-                switch result {
-                case .success(let image):
-                    cell.pictureOutlet.image = UIImage(data: image)
-                    cell.activityIndicatorOutlet.stopAnimating()
-                    cell.activityIndicatorOutlet.isHidden = true
-                case .failure(let error):
-                    print(error)
-                }
+            cell.pictureOutlet.image = .none
+            cell.activityIndicatorOutlet.isHidden = false
+            cell.activityIndicatorOutlet.startAnimating()
+
+            cell.pictureOutlet.fetchImage(from: image?.href ?? "") {
+                cell.activityIndicatorOutlet.stopAnimating()
+                cell.activityIndicatorOutlet.isHidden = true
             }
-            
+
             cell.completion = {
                 tableView.beginUpdates()
                 tableView.endUpdates()
             }
-            
-            //            if cell.pictureDescription.text?.count ?? 0 < 216 {
-            //                cell.deployButtonOutlet.isHidden = true
-            //            }
-            
             return cell
         }
         return UITableViewCell()
     }
 }
 
-extension MoonViewController: Delegate {
+extension MoonViewController: MoonViewControllerDelegate {
     func update(index: Int) {
-        fetchData(from: SearchNamesAndUrl.init().URL[index])
-        self.tableView.reloadData()
+        
+        fetchData(from: spaceObject?.link[index])
         print(index)
     }
 }

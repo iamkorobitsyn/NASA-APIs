@@ -8,7 +8,6 @@
 import QuartzCore
 import UIKit
 
-//let sizeBar = CustomTabBarTransfer()
 
 class ThinLineShape: CAShapeLayer {
     override init() {
@@ -68,16 +67,16 @@ class ShapeBezier {
         
         shapeLayer.frame = view.bounds
         let path = UIBezierPath()
-        path.move(to: CGPoint(x: view.frame.width / 2 + 50, y: view.frame.height / 2 + 50))
-        path.addLine(to: CGPoint(x: view.frame.width / 2 + -60, y: view.frame.height / 2 + 50))
+        path.move(to: CGPoint(x: view.frame.width / 2 + 50, y: view.frame.height / 2 + 24))
+        path.addLine(to: CGPoint(x: view.frame.width / 2 + -60, y: view.frame.height / 2 + 24))
         shapeLayer.path = path.cgPath
     }
     
     func thirdlineFrame(shapeLayer: CAShapeLayer, view: UIView) {
         shapeLayer.frame = view.bounds
         let path = UIBezierPath()
-        path.move(to: CGPoint(x: view.frame.width / 2 - 100 , y: view.frame.height / 2 + 40))
-        path.addLine(to: CGPoint(x: view.frame.width / 2 + 50, y: view.frame.height / 2 + 40))
+        path.move(to: CGPoint(x: view.frame.width / 2 - 100 , y: view.frame.height / 2 + 18))
+        path.addLine(to: CGPoint(x: view.frame.width / 2 + 50, y: view.frame.height / 2 + 18))
         shapeLayer.path = path.cgPath
     }
     
@@ -99,14 +98,14 @@ class ShapeBezier {
     func ISSPilling(shapeLayer: CAShapeLayer, view: UIView) {
         shapeLayer.frame = view.bounds
         let path = UIBezierPath(arcCenter: CGPoint(x: view.frame.width / 2 + 40,
-                                                   y: view.frame.height / 2 + 30), radius: 0.2, startAngle: 50, endAngle: 100, clockwise: true)
+                                                   y: view.frame.height / 2 + 16), radius: 0.2, startAngle: 50, endAngle: 100, clockwise: true)
         shapeLayer.path = path.cgPath
     }
     
     func probesPilling(shapeLayer: CAShapeLayer, view: UIView) {
         
         let path = UIBezierPath(arcCenter: CGPoint(x: view.frame.width / 2 - 95,
-                                                   y: view.frame.height / 2 + 20 ), radius: 0.2, startAngle: 50, endAngle: 100, clockwise: true)
+                                                   y: view.frame.height / 2 + 10 ), radius: 0.2, startAngle: 50, endAngle: 100, clockwise: true)
         shapeLayer.path = path.cgPath
     }
     

@@ -16,46 +16,22 @@ enum NetworkError: Error {
 class NetworkManager {
     static let shared = NetworkManager()
     
-    
-    func fetchData(from url: String, completion: @escaping(Result<FetchMars, NetworkError>) -> Void) {
+    func fetchLibrary(from url: String,
+                      completion: @escaping(Result<FetchLibrary, NetworkError>) -> Void) {
         
         guard let url = URL(string: url) else {
             completion(.failure(.invalidURL))
             return
         }
         
-        URLSession.shared.dataTask(with: url) { data, _, error in
-            guard let data = data else {
+        URLSession.shared.dataTask(with: url) { data, responce, error in
+            guard let data = data, let responce = responce else {
                 completion(.failure(.noData))
                 print(error?.localizedDescription ?? "no error description")
                 return
             }
             
-            do  {
-                let manifest = try JSONDecoder().decode(FetchMars.self, from: data)
-                DispatchQueue.main.async {
-                    completion(.success(manifest))
-                }
-            } catch {
-                completion(.failure(.decodingError))
-            }
-        }.resume()
-    }
-    
-    
-    func nasaLibrary(from url: String, completion: @escaping(Result<FetchLibrary, NetworkError>) -> Void) {
-        
-        guard let url = URL(string: url) else {
-            completion(.failure(.invalidURL))
-            return
-        }
-        
-        URLSession.shared.dataTask(with: url) { data, _, error in
-            guard let data = data else {
-                completion(.failure(.noData))
-                print(error?.localizedDescription ?? "no error description")
-                return
-            }
+            guard url == responce.url else {return}
             
             do {
                 let library = try JSONDecoder().decode(FetchLibrary.self, from: data)
@@ -69,19 +45,46 @@ class NetworkManager {
     }
     
     func fetchImage(from url: String,
-                    completion: @escaping(Result<Data, NetworkError>) -> Void) {
-        guard let imageURL = URL(string: url) else {
+                        completion: @escaping(Result<Data, NetworkError>) -> Void) {
+        
+        guard let url = URL(string: url) else {
             completion(.failure(.invalidURL))
             return }
         
-        DispatchQueue.global().async {
-            guard let imageData = try? Data(contentsOf: imageURL) else {
-                completion(.failure(.noData))
+        URLSession.shared.dataTask(with: url) { data, responce, error in
+            guard let data = data, let responce = responce else {
+                print(error?.localizedDescription ?? "no error description")
                 return
             }
+            
+            guard url == responce.url else {return}
+            
             DispatchQueue.main.async {
-                completion(.success(imageData))
+                completion(.success(data))
             }
-        }
+        }.resume()
+    }
+}
+
+
+class ImageManager {
+    static var shared = ImageManager()
+    
+    private init() {}
+    
+    func fetchImage(from url: URL, completion: @escaping(Data, URLResponse) -> Void) {
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let data = data, let response = response else {
+                print(error?.localizedDescription ?? "No error description")
+                return
+            }
+
+            guard url == response.url else { return }
+            
+            DispatchQueue.main.async {
+                completion(data, response)
+            }
+            
+        }.resume()
     }
 }

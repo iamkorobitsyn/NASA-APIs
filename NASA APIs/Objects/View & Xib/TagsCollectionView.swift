@@ -7,11 +7,16 @@
 
 import Foundation
 import UIKit
+protocol TagsCollectionViewDelegate: AnyObject {
+    func updatee(object: [String])
+}
 
-class TagsView: UIView {
-    
-    var delegate: Delegate?
-    var selectedCell: IndexPath = [0, 0]
+class TagsCollectionView: UIView {
+   
+    var getspaceObject: [String]?
+    var delegate: MoonViewControllerDelegate?
+
+    private var selectedCell: IndexPath = [0, 0]
 
     let viewFrame = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
     var tagsCollection: UICollectionView = {
@@ -23,8 +28,10 @@ class TagsView: UIView {
         return view
     }()
     
+  
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         viewFrame.addSubview(tagsCollection)
         tagsCollection.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50)
         tagsCollection.backgroundColor = UIColor.black.withAlphaComponent(0)
@@ -33,7 +40,10 @@ class TagsView: UIView {
         tagsCollection.register(UINib(nibName: "TagsCell", bundle: nil), forCellWithReuseIdentifier: "TagsCell")
        
         tagsCollection.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
     }
+    
+   
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -41,23 +51,24 @@ class TagsView: UIView {
     
 }
 
-extension TagsView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension TagsCollectionView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return SearchNamesAndUrl.init().moonNames.count
+        return getspaceObject?.count ?? 3
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         if let cell = tagsCollection.dequeueReusableCell(withReuseIdentifier: "TagsCell",
                                                          for: indexPath) as? TagsCell {
-            cell.label.text = SearchNamesAndUrl.init().moonNames[indexPath.row]
-            cell.backgroundColor = UIColor.systemGray4.withAlphaComponent(0.7)
+            
+            cell.label.text = getspaceObject?[indexPath.row]
+            cell.backgroundColor = UIColor.systemGray4.withAlphaComponent(1)
             cell.layer.cornerRadius = 7
             
-            tagsCollection.cellForItem(at: [0, 0])?.backgroundColor =
-            UIColor.red.withAlphaComponent(0.5)
+            tagsCollection.cellForItem(at: selectedCell)?.backgroundColor =
+            UIColor.upGradient.withAlphaComponent(1)
             
             return cell
         }
@@ -66,19 +77,29 @@ extension TagsView: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let updateSize = UILabel(frame: CGRect.zero)
-        updateSize.text = SearchNamesAndUrl.init().moonNames[indexPath.item]
+        updateSize.text = getspaceObject?[indexPath.item]
         updateSize.sizeToFit()
         return CGSize(width: updateSize.frame.width + 30, height: 35)
     }
+        
+    
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
         tagsCollection.cellForItem(at: selectedCell)?.backgroundColor =
-        UIColor.systemGray4.withAlphaComponent(0.7)
+        UIColor.systemGray4.withAlphaComponent(1)
         tagsCollection.cellForItem(at: indexPath)?.backgroundColor =
-        UIColor.red.withAlphaComponent(0.5)
+        UIColor.upGradient.withAlphaComponent(1)
         selectedCell = indexPath
         delegate?.update(index: indexPath.row)
+        
+        
+    }
+}
+
+extension TagsCollectionView: TagsCollectionViewDelegate {
+    func updatee(object: [String]) {
+        getspaceObject = object
+        
         
     }
 }

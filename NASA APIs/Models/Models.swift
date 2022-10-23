@@ -7,6 +7,8 @@
 
 import Foundation
 
+//MARK: - Models
+
 struct FetchLibrary: Decodable {
     let collection: Collection
 }
@@ -39,66 +41,76 @@ struct PageLinks: Decodable {
     let href: String
 }
 
+//MARK: - Objects
 
-
-
-struct FetchMars: Decodable {
-    let photoManifest: PhotoManifest
-    
-    enum CodingKeys: String, CodingKey {
-        case photoManifest = "photo_manifest"
-    }
+struct SpaceObject {
+    let title: [String]
+    let link: [String]
+    let name: ObjectName
 }
 
-struct PhotoManifest: Decodable {
-    
-    let name: String
-    let landingDate: String
-    let launchDate: String
-    let status: String
-    let maxSol: Int
-    let maxDate: String
-    let totalPhotos: Int
-    let photos: [Photos]
-    
-    enum CodingKeys: String, CodingKey {
-        case name = "name"
-        case landingDate = "landing_date"
-        case launchDate = "launch_date"
-        case status = "status"
-        case maxSol = "max_sol"
-        case maxDate = "max_date"
-        case totalPhotos = "total_photos"
-        case photos = "photos"
-    }
-}
-
-struct Photos: Decodable {
-    
-}
-
-
-enum MarsLink: String {
-    case curiosityManifest =
-            "https://api.nasa.gov/mars-photos/api/v1/manifests/curiosity/?api_key=tqvH1Qo4crHNgeAB8Dg2QPhdZ2AuPOWcx5VkvCSA"
-    case opportunityManifest =
-            "https://api.nasa.gov/mars-photos/api/v1/manifests/opportunity/?api_key=tqvH1Qo4crHNgeAB8Dg2QPhdZ2AuPOWcx5VkvCSA"
-    case spiritManifest =
-            "https://api.nasa.gov/mars-photos/api/v1/manifests/spirit/?api_key=tqvH1Qo4crHNgeAB8Dg2QPhdZ2AuPOWcx5VkvCSA"
+enum ObjectName: String {
+    case moon = "Moon"
+    case sun = "Sun"
 }
 
 
 
-struct SearchNamesAndUrl {
-    let moonNames = ["Lunar Photography", "Lunar Surface", "Lunar Bases", "Apollo Project", "Lunar Landing Sites", "Lunar Reconnaissance Orbiter LRO", "Moon"]
-    
-    let URL = ["https://images-api.nasa.gov/search?q=lunar%20Photography&media_type=image",
-               "https://images-api.nasa.gov/search?q=lunar%20Surface&media_type=image",
-               "https://images-api.nasa.gov/search?q=lunar%20Bases&media_type=image",
-               "https://images-api.nasa.gov/search?q=apollo%20project&media_type=image",
-               "https://images-api.nasa.gov/search?q=lunar%20Landing%20Sites&media_type=image",
-               "https://images-api.nasa.gov/search?q=lunar%20Reconnaissance%20Orbiter%20LRO%20LRO&media_type=image",
-               "https://images-api.nasa.gov/search?q=moon&media_type=image"]
-}
+
+
+//
+//
+//
+//
+//
+//enum MoonCases: String, CaseIterable {
+//    case lunarPhotography = "Lunar Photography"
+//    case lunarSurface = "Lunar Surface"
+//    case lunarBases = "Lunar Bases"
+//    case apolloProject = "Apollo Project"
+//    case lunarLandingSites = "Lunar Landing Sites"
+//    case lunarReconnaissanceOrbiterLRO = "Lunar Reconnaissance Orbiter LRO"
+//    case moon = "Moon"
+//
+//    var link: String {
+//        switch self {
+//        case .lunarPhotography:
+//            return "https://images-api.nasa.gov/search?q=lunar%20Photography&media_type=image"
+//        case .lunarSurface:
+//            return "https://images-api.nasa.gov/search?q=lunar%20Surface&media_type=image"
+//        case .lunarBases:
+//            return "https://images-api.nasa.gov/search?q=lunar%20Bases&media_type=image"
+//        case .apolloProject:
+//            return "https://images-api.nasa.gov/search?q=apollo%20project&media_type=image"
+//        case .lunarLandingSites:
+//            return "https://images-api.nasa.gov/search?q=lunar%20Landing%20Sites&media_type=image"
+//        case .lunarReconnaissanceOrbiterLRO:
+//            return "https://images-api.nasa.gov/search?q=lunar%20Reconnaissance%20Orbiter%20LRO%20LRO&media_type=image"
+//        case .moon:
+//            return "https://images-api.nasa.gov/search?q=moon&media_type=image"
+//        }
+//    }
+//}
+//
+//enum SunCases: String, CaseIterable {
+//    case sun = "Sun"
+//    case solarDynamicsObservatorySDO = "Solar Dynamics Observatory SDO"
+//    case cme = "Cme"
+//    case fromtheSunwithLove = "From the Sun with Love"
+//
+//    var link: String {
+//        switch self {
+//        case .sun:
+//            return "https://images-api.nasa.gov/search?q=Sun&media_type=image"
+//        case .solarDynamicsObservatorySDO:
+//            return "https://images-api.nasa.gov/search?q=solar%20Dynamics%20Observatory%20SDO&media_type=image"
+//        case .cme:
+//            return "https://images-api.nasa.gov/search?q=cme&media_type=image"
+//        case .fromtheSunwithLove:
+//            return "https://images-api.nasa.gov/search?q=from%20the%20Sun%20with%20Love&media_type=image"
+//        }
+//    }
+//}
+
 
 
