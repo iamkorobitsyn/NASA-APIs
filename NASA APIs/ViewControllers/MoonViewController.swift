@@ -7,36 +7,60 @@
 
 import UIKit
 
+protocol MoonViewControllerDelegate: AnyObject {
+    func update(index: Int)
+}
+
 class MoonViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     private let header = HeaderView()
-    private let tagsView = TagsView()
+    private let tagsCollectionView = TagsCollectionView()
     private var data: FetchLibrary?
     
-
+    var delegate: TagsCollectionViewDelegate?
+    
+    var spaceObject: SpaceObject?
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(UINib(nibName: "ImageCell", bundle: nil), forCellReuseIdentifier: "ImageCell")
+        
+        guard let test = self.spaceObject?.title else {return}
+        delegate?.updatee(object: test)
+        
+        tagsCollectionView.getspaceObject = spaceObject?.title
+        tagsCollectionView.delegate = self
+        
+        
+        
+        
+        createTableView()
+        
+    }
+
+    
+    private func createTableView() {
+        tableView.register(UINib(nibName: "ImageCell", bundle: nil),
+                           forCellReuseIdentifier: "ImageCell")
+        tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        tableView.separatorStyle = .none
+        
         header.headerImage.image = UIImage(named: "headerMoon")
         tableView.tableHeaderView = header.headerFrame
-        navigationSettings()
-        fetchData(from: MoonLink.photoLibrary.rawValue)
-        tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-    }
-    
-    override func viewDidLayoutSubviews() {
-        tableView.frame = view.frame
+        
+        
+        
+        fetchData(from: spaceObject?.link[0])
     }
     
     private func fetchData(from url: String?) {
-        NetworkManager.shared.nasaLibrary(from: url ?? "") { result in
+        NetworkManager.shared.fetchLibrary(from: url ?? "") { result in
             switch result {
             case.success(let success):
                 self.data = success
+        
                 DispatchQueue.main.async {
-                    self.getData()
                     self.tableView.reloadData()
                 }
             case.failure(let error):
@@ -45,19 +69,12 @@ class MoonViewController: UIViewController {
         }
     }
     
-    private func getData() {
-        print("Hello")
-        print(data?.collection.items.count ?? 0)
+    override func viewDidLayoutSubviews() {
+        tableView.frame = view.frame
     }
     
-    private func navigationSettings() {
-        navigationController?.setNavigationBarHidden(false, animated: false)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(
-            title: "Nasa repository", style: .plain, target: nil, action: nil)
-        title = "Moon"
-    }
 }
-
+    
 extension MoonViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data?.collection.items.count ?? 0
@@ -72,33 +89,40 @@ extension MoonViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return tagsView.viewFrame
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        500
+        return tagsCollectionView.viewFrame
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "ImageCell", for: indexPath) as? ImageCell {
+            
             let pictureDescription = data?.collection.items[indexPath.row].data[indexPath.startIndex]
-            let date = pictureDescription?.dateCreated
             let image = data?.collection.items[indexPath.row].links[indexPath.startIndex]
             cell.pictureDescription?.text = pictureDescription?.description
-            cell.date?.text = date
+            cell.selectionStyle = .none
+            
+            cell.pictureOutlet.image = .none
+            cell.activityIndicatorOutlet.isHidden = false
+            cell.activityIndicatorOutlet.startAnimating()
 
-            NetworkManager.shared.fetchImage(from: image?.href ?? "") { result in
-                switch result {
-                case .success(let image):
-                    cell.picture.image = UIImage(data: image)
-                case .failure(let error):
-                    print(error)
-                }
+            cell.pictureOutlet.fetchImage(from: image?.href ?? "") {
+                cell.activityIndicatorOutlet.stopAnimating()
+                cell.activityIndicatorOutlet.isHidden = true
             }
-            
-            
+
+            cell.completion = {
+                tableView.beginUpdates()
+                tableView.endUpdates()
+            }
             return cell
         }
         return UITableViewCell()
+    }
+}
+
+extension MoonViewController: MoonViewControllerDelegate {
+    func update(index: Int) {
+        
+        fetchData(from: spaceObject?.link[index])
+        print(index)
     }
 }

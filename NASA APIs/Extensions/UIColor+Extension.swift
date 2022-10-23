@@ -15,7 +15,9 @@ extension UIColor {
     static let whiteColor: UIColor = .init(r: 255, g: 255, b: 255)
     static let upGradient: UIColor = .init(r: 104, g: 122, b: 147)
     static let downGradient: UIColor = .init(r: 12, g: 14, b: 17)
+    
 }
+
 
 
 

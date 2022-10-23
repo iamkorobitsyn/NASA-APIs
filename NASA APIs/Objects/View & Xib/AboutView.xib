@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="AboutView" customModule="NASA_APIs" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="iHL-Hi-cZz">
+                    <rect key="frame" x="65" y="20" width="190.5" height="72.5"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alex Korobitsyn" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bl9-7S-F05" userLabel="NameSurenameOutlet">
+                            <rect key="frame" x="0.0" y="0.0" width="190.5" height="19.5"/>
+                            <fontDescription key="fontDescription" type="system" weight="thin" pointSize="16"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Russia/Moscow" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cCe-PS-7I0" userLabel="CountryCityOutlet">
+                            <rect key="frame" x="0.0" y="26.5" width="190.5" height="19.5"/>
+                            <fontDescription key="fontDescription" type="system" weight="thin" pointSize="16"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="iamkorobitsyn@icloud.com" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K3J-K4-m0g" userLabel="MailOutlet">
+                            <rect key="frame" x="0.0" y="53" width="190.5" height="19.5"/>
+                            <fontDescription key="fontDescription" type="system" weight="thin" pointSize="16"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                </stackView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3l7-wX-Bpq" userLabel="DescriptionOutlet">
+                    <rect key="frame" x="60" y="112.5" width="200" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="200" id="GFy-nR-59Q"/>
+                        <constraint firstAttribute="height" constant="40" id="LR5-Dd-7LD"/>
+                    </constraints>
+                    <string key="text">All resources are sourced 
+from Nasa public api</string>
+                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="16"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mail.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="sLR-dI-eFf">
+                    <rect key="frame" x="32" y="71.5" width="25" height="22.5"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="25" id="4Cx-gk-I7z"/>
+                        <constraint firstAttribute="width" constant="25" id="gxf-9X-IWj"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mFt-6S-f6M">
+                    <rect key="frame" x="260" y="160" width="60" height="40"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="fnQ-Th-IRS"/>
+                        <constraint firstAttribute="width" constant="60" id="m6c-ZU-0vk"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="skip">
+                        <fontDescription key="titleFontDescription" type="system" weight="thin" pointSize="14"/>
+                        <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </buttonConfiguration>
+                    <connections>
+                        <action selector="skipAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="q7f-z8-iVm"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="XQk-b4-5Qc"/>
+            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="K3J-K4-m0g" firstAttribute="leading" secondItem="sLR-dI-eFf" secondAttribute="trailing" constant="8" symbolic="YES" id="9FQ-fG-vjw"/>
+                <constraint firstItem="sLR-dI-eFf" firstAttribute="centerY" secondItem="K3J-K4-m0g" secondAttribute="centerY" id="QwC-9x-tOE"/>
+                <constraint firstItem="iHL-Hi-cZz" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Ugo-U6-SOp"/>
+                <constraint firstItem="3l7-wX-Bpq" firstAttribute="top" secondItem="iHL-Hi-cZz" secondAttribute="bottom" constant="20" id="Ytc-1H-VDl"/>
+                <constraint firstItem="3l7-wX-Bpq" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Zoz-AU-fIg"/>
+                <constraint firstItem="mFt-6S-f6M" firstAttribute="trailing" secondItem="XQk-b4-5Qc" secondAttribute="trailing" id="bBo-bd-ZAQ"/>
+                <constraint firstItem="iHL-Hi-cZz" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="iZh-SH-VDf"/>
+                <constraint firstItem="mFt-6S-f6M" firstAttribute="bottom" secondItem="XQk-b4-5Qc" secondAttribute="bottom" id="oDI-Bm-mMQ"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="countryCityOutlet" destination="cCe-PS-7I0" id="Qhk-Z8-dzm"/>
+                <outlet property="descriptionOutlet" destination="3l7-wX-Bpq" id="bI1-6o-oRu"/>
+                <outlet property="mailOutlet" destination="K3J-K4-m0g" id="YKR-EF-YL4"/>
+                <outlet property="nameSurenameOutlet" destination="bl9-7S-F05" id="C7o-Ez-0rq"/>
+                <outlet property="skipActionOutlet" destination="mFt-6S-f6M" id="hHv-QB-Sye"/>
+            </connections>
+            <point key="canvasLocation" x="-189.85507246376812" y="150.66964285714286"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="mail.fill" catalog="system" width="128" height="93"/>
+    </resources>
+</document>

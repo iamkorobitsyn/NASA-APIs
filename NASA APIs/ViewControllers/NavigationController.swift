@@ -14,4 +14,5 @@ class NavigationController: UINavigationController {
         navigationBar.prefersLargeTitles = true
         navigationBar.tintColor = UIColor.label
     }
+
 }
