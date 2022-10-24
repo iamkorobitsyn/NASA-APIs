@@ -7,11 +7,11 @@
 
 import UIKit
 
-protocol MoonViewControllerDelegate: AnyObject {
+protocol ContentViewControllerDelegate: AnyObject {
     func update(index: Int)
 }
 
-class MoonViewController: UIViewController {
+class ContentViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     private let header = HeaderView()
@@ -32,9 +32,6 @@ class MoonViewController: UIViewController {
         tagsCollectionView.getspaceObject = spaceObject?.title
         tagsCollectionView.delegate = self
         
-        
-        
-        
         createTableView()
         
     }
@@ -46,10 +43,8 @@ class MoonViewController: UIViewController {
         tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         tableView.separatorStyle = .none
         
-        header.headerImage.image = UIImage(named: "headerMoon")
+        header.headerImage.image = UIImage(named: spaceObject?.image ?? "")
         tableView.tableHeaderView = header.headerFrame
-        
-        
         
         fetchData(from: spaceObject?.link[0])
     }
@@ -75,7 +70,7 @@ class MoonViewController: UIViewController {
     
 }
     
-extension MoonViewController: UITableViewDataSource, UITableViewDelegate {
+extension ContentViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data?.collection.items.count ?? 0
     }
@@ -119,7 +114,7 @@ extension MoonViewController: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
-extension MoonViewController: MoonViewControllerDelegate {
+extension ContentViewController: ContentViewControllerDelegate {
     func update(index: Int) {
         
         fetchData(from: spaceObject?.link[index])

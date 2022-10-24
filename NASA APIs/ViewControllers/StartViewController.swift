@@ -13,7 +13,7 @@ class StartViewController: UIViewController, UITextFieldDelegate, CAAnimationDel
     private let secondStarShape = ThinLineShape()
     private let shapeBezier = ShapeBezier()
     private let animator = Animator()
-    private var gradient: CAGradientLayer!
+    private let gradient = Gradient()
 
     @IBOutlet weak var ellypsContains: UIView!
     @IBOutlet weak var ellypsOne: UIImageView!
@@ -23,12 +23,16 @@ class StartViewController: UIViewController, UITextFieldDelegate, CAAnimationDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.layer.insertSublayer(firstStarShape, at: 0)
-        view.layer.insertSublayer(secondStarShape, at: 0)
-        
         makeStartingSettings()
-        gradient = addGradient()
-        
+        insertCALayers()
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         animateEllypse(image: ellypsOne)
         animateEllypse(image: ellypsTwo)
         
@@ -36,20 +40,13 @@ class StartViewController: UIViewController, UITextFieldDelegate, CAAnimationDel
         buttonOpacity(button: dislocationOutlet)
     }
     
-    override var prefersStatusBarHidden: Bool {
-        return true
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        ellypsOne.stopAnimating()
+        ellypsTwo.stopAnimating()
     }
     
-    override func viewDidLayoutSubviews() {
-        gradient.frame = CGRect(x: 0, y: 0, width: view.frame.width,
-                                   height: view.frame.height)
-        
-        shapeBezier.firstStarFrame(shapeLayer: firstStarShape, view: self.view)
-        shapeBezier.secondStarFrame(shapeLayer: secondStarShape, view: self.view)
-    }
-
     @IBAction func dislocationButton(_ sender: UIButton) {
-    
         viewOpacity(UIView: self.view)
         ellypsOne.layer.speed = 7
         ellypsTwo.layer.speed = 7
@@ -60,6 +57,14 @@ class StartViewController: UIViewController, UITextFieldDelegate, CAAnimationDel
         firstStarAnimating(shape: firstStarShape)
         secondStarAnimating(shape: secondStarShape)
         
+    }
+    
+    private func insertCALayers() {
+        view.layer.insertSublayer(gradient.returnGradient(view: view), at: 0)
+        view.layer.insertSublayer(firstStarShape, at: 1)
+        view.layer.insertSublayer(secondStarShape, at: 2)
+        shapeBezier.firstStarFrame(shapeLayer: firstStarShape, view: self.view)
+        shapeBezier.secondStarFrame(shapeLayer: secondStarShape, view: self.view)
     }
     
     private func starOpasity(shape: CAShapeLayer) {
@@ -115,18 +120,6 @@ class StartViewController: UIViewController, UITextFieldDelegate, CAAnimationDel
         dislocationOutlet.titleLabel?.alpha = 0.7
         dislocationOutlet.titleLabel?.font = .systemFont(ofSize: 25, weight: .thin)
         
-    }
-    
-    func addGradient() -> CAGradientLayer {
-        let gradient = CAGradientLayer()
-        view.layer.insertSublayer(gradient, at: 0)
-        gradient.startPoint = CGPoint(x: 0, y: 0)
-        gradient.endPoint = CGPoint(x: 0, y: 1)
-        gradient.frame = CGRect(x: 0, y: 0, width: view.frame.width,
-                                height: view.frame.height)
-        gradient.colors = [UIColor.downGradient.cgColor,
-                           UIColor.upGradient.cgColor]
-        return gradient
     }
 }
 

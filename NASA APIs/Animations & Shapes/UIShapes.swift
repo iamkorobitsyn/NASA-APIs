@@ -59,7 +59,7 @@ class ShapeBezier {
         shapeLayer.frame = view.bounds
         let path = UIBezierPath()
         path.move(to: CGPoint(x: view.frame.width / 2 , y: view.frame.height / 2 + 60))
-        path.addLine(to: CGPoint(x: view.frame.width / 2 + 100, y: view.frame.height / 2 + 60))
+        path.addLine(to: CGPoint(x: view.frame.width / 2 + 115, y: view.frame.height / 2 + 60))
         shapeLayer.path = path.cgPath
     }
     
@@ -108,24 +108,5 @@ class ShapeBezier {
                                                    y: view.frame.height / 2 + 10 ), radius: 0.2, startAngle: 50, endAngle: 100, clockwise: true)
         shapeLayer.path = path.cgPath
     }
-    
-    //MARK: - EarthTabBarController
-    
-    func tabCirclePath(shapeLayer: CAShapeLayer) {
-        let path = UIBezierPath()
-        path.addArc(withCenter: CGPoint(x: 0, y: 0),
-                    radius: 40,
-                    startAngle: .pi / 2 + .pi / 6,
-                    endAngle: .pi / 2 - .pi / 6,
-                    clockwise: true)
-        shapeLayer.path = path.cgPath
-    }
-    
-    func tabLinePath(shapeLayer: CAShapeLayer) {
-        let path = UIBezierPath()
-        path.move(to: CGPoint(x: 15, y: 32))
-        path.addLine(to: CGPoint(x: 65, y: 32))
-        path.close()
-        shapeLayer.path = path.cgPath
-    }
+
 }

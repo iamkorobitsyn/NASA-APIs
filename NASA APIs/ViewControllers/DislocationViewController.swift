@@ -9,7 +9,8 @@ import UIKit
 
 class DislocationViewController: UIViewController {
     
-    var timer = Timer()
+    private var objectName: ObjectName?
+    private var timer = Timer()
     private let object = ObjectData()
     
     private var gradient = CAGradientLayer()
@@ -111,45 +112,51 @@ class DislocationViewController: UIViewController {
                            UIColor.upGradient.cgColor]
         return gradient
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-                
-        guard let moonVC = segue.destination as? MoonViewController else {return}
-                navigationController?.setNavigationBarHidden(false, animated: false)
-                moonVC.title = "Moon"
-                moonVC.spaceObject = object.get(objectName: .moon)
+        guard let moonVC = segue.destination as? ContentViewController else {return}
+        guard let objectName = objectName else {return}
+        
+        navigationController?.setNavigationBarHidden(false, animated: false)
+        moonVC.title = objectName.rawValue
+        moonVC.spaceObject = object.get(objectName: objectName)
     }
     
     @objc func didTapSun() {
         print("sun")
-        guard let vc = storyboard?.instantiateViewController(
-            withIdentifier: "MoonViewController") else {return}
-        navigationController?.pushViewController(vc, animated: true)
-        navigationController?.setNavigationBarHidden(false, animated: true)
-        vc.title = "Sun"
+        objectName = .sun
+        performSegue(withIdentifier: "id", sender: nil)
     }
     
     @objc func didTapEarth() {
         print("earth")
-        performSegue(withIdentifier: "earthID", sender: nil)
+        objectName = .earth
+        performSegue(withIdentifier: "id", sender: nil)
+        
     }
     
     @objc func didTapISS() {
         print("ISS")
+        objectName = .ISS
+        performSegue(withIdentifier: "id", sender: nil)
     }
     
     @objc func didTapMoon() {
         print("Moon")
-        performSegue(withIdentifier: "moonID", sender: nil)
+        objectName = .moon
+        performSegue(withIdentifier: "id", sender: nil)
     }
     
     @objc func didTapMars() {
         print("mars")
-        performSegue(withIdentifier: "marsID", sender: nil)
+        objectName = .mars
+        performSegue(withIdentifier: "id", sender: nil)
     }
     
     @objc func didTapProbes() {
         print("probes")
+        objectName = .spaceProbes
+        performSegue(withIdentifier: "id", sender: nil)
     }
     
     @objc func tapObservatory() {

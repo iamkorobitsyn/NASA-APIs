@@ -11,16 +11,16 @@
 		6508EEEE28FDFB6A007E6DEE /* UserDefaults&Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6508EEED28FDFB6A007E6DEE /* UserDefaults&Themes.swift */; };
 		650958282902F0CA002EF2FA /* UIImageView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650958272902F0CA002EF2FA /* UIImageView + Extension.swift */; };
 		650A65C32905817B00777C70 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650A65C22905817B00777C70 /* Database.swift */; };
-		6515652328ED972400F518E7 /* MoonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6515652228ED972400F518E7 /* MoonViewController.swift */; };
+		6515652328ED972400F518E7 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6515652228ED972400F518E7 /* ContentViewController.swift */; };
 		6515652628EDA51100F518E7 /* headerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6515652528EDA51100F518E7 /* headerView.swift */; };
 		653BC54E284018B000E05BDA /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653BC54D284018B000E05BDA /* NavigationController.swift */; };
 		6546DB9028CCB0BD00134B48 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6546DB8F28CCB0BD00134B48 /* NetworkManager.swift */; };
 		65490DCF283A7ACE00BC535D /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65490DCE283A7ACE00BC535D /* UIColor+Extension.swift */; };
 		6580194028C8FFC50097DCC8 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6580193F28C8FFC50097DCC8 /* Models.swift */; };
-		6580194228C94A4D0097DCC8 /* MarsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6580194128C94A4D0097DCC8 /* MarsViewController.swift */; };
 		6585CA0A2901559C006A35B0 /* AboutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6585CA092901559C006A35B0 /* AboutView.xib */; };
 		6585CA0C290155E5006A35B0 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6585CA0B290155E5006A35B0 /* AboutView.swift */; };
 		6585CA0E29016314006A35B0 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6585CA0D29016314006A35B0 /* UIView+Extension.swift */; };
+		658849F92907384B001FD453 /* CAGradientLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658849F82907384B001FD453 /* CAGradientLayer.swift */; };
 		659CC15B28EF8B8300EF3556 /* TagsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659CC15928EF8B8300EF3556 /* TagsCell.swift */; };
 		659CC15C28EF8B8300EF3556 /* TagsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 659CC15A28EF8B8300EF3556 /* TagsCell.xib */; };
 		65AD47D1282CF9D400F08BD5 /* CABacicAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AD47D0282CF9D300F08BD5 /* CABacicAnimations.swift */; };
@@ -45,16 +45,16 @@
 		6508EEED28FDFB6A007E6DEE /* UserDefaults&Themes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults&Themes.swift"; sourceTree = "<group>"; };
 		650958272902F0CA002EF2FA /* UIImageView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView + Extension.swift"; sourceTree = "<group>"; };
 		650A65C22905817B00777C70 /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
-		6515652228ED972400F518E7 /* MoonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoonViewController.swift; sourceTree = "<group>"; };
+		6515652228ED972400F518E7 /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
 		6515652528EDA51100F518E7 /* headerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = headerView.swift; sourceTree = "<group>"; };
 		653BC54D284018B000E05BDA /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		6546DB8F28CCB0BD00134B48 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		65490DCE283A7ACE00BC535D /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		6580193F28C8FFC50097DCC8 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
-		6580194128C94A4D0097DCC8 /* MarsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarsViewController.swift; sourceTree = "<group>"; };
 		6585CA092901559C006A35B0 /* AboutView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutView.xib; sourceTree = "<group>"; };
 		6585CA0B290155E5006A35B0 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		6585CA0D29016314006A35B0 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		658849F82907384B001FD453 /* CAGradientLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CAGradientLayer.swift; sourceTree = "<group>"; };
 		659CC15928EF8B8300EF3556 /* TagsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsCell.swift; sourceTree = "<group>"; };
 		659CC15A28EF8B8300EF3556 /* TagsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TagsCell.xib; sourceTree = "<group>"; };
 		65AD47D0282CF9D300F08BD5 /* CABacicAnimations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CABacicAnimations.swift; sourceTree = "<group>"; };
@@ -95,7 +95,7 @@
 			path = Database;
 			sourceTree = "<group>";
 		};
-		6515652428EDA4CC00F518E7 /* View & Xib */ = {
+		6527E41E2838D4650098468F /* UIElements */ = {
 			isa = PBXGroup;
 			children = (
 				6515652528EDA51100F518E7 /* headerView.swift */,
@@ -107,24 +107,7 @@
 				6585CA092901559C006A35B0 /* AboutView.xib */,
 				6585CA0B290155E5006A35B0 /* AboutView.swift */,
 			);
-			path = "View & Xib";
-			sourceTree = "<group>";
-		};
-		6527E41E2838D4650098468F /* UIElements */ = {
-			isa = PBXGroup;
-			children = (
-				65AD47D2282EFC2300F08BD5 /* UIShapes.swift */,
-			);
 			path = UIElements;
-			sourceTree = "<group>";
-		};
-		653CD402283049E40001E508 /* Objects */ = {
-			isa = PBXGroup;
-			children = (
-				6515652428EDA4CC00F518E7 /* View & Xib */,
-				6527E41E2838D4650098468F /* UIElements */,
-			);
-			path = Objects;
 			sourceTree = "<group>";
 		};
 		6546DB9128CCB0C800134B48 /* Services */ = {
@@ -150,6 +133,8 @@
 			isa = PBXGroup;
 			children = (
 				65AD47D0282CF9D300F08BD5 /* CABacicAnimations.swift */,
+				658849F82907384B001FD453 /* CAGradientLayer.swift */,
+				65AD47D2282EFC2300F08BD5 /* UIShapes.swift */,
 			);
 			path = "Animations & Shapes";
 			sourceTree = "<group>";
@@ -174,12 +159,12 @@
 		65BAE2F32812BDE6000253B5 /* NASA APIs */ = {
 			isa = PBXGroup;
 			children = (
+				65BAE3112812BEB8000253B5 /* App */,
 				65BAE3102812BEA7000253B5 /* Storyboards */,
 				65BAE30B2812BE18000253B5 /* ViewControllers */,
-				65490DD0283A7AE500BC535D /* Extensions */,
-				653CD402283049E40001E508 /* Objects */,
+				6527E41E2838D4650098468F /* UIElements */,
 				65AD47CF282CF98700F08BD5 /* Animations & Shapes */,
-				65BAE3112812BEB8000253B5 /* App */,
+				65490DD0283A7AE500BC535D /* Extensions */,
 				650A65C12905814700777C70 /* Database */,
 				65BAE30F2812BE74000253B5 /* Models */,
 				6546DB9128CCB0C800134B48 /* Services */,
@@ -194,8 +179,7 @@
 				653BC54D284018B000E05BDA /* NavigationController.swift */,
 				65BAE2F82812BDE6000253B5 /* StartViewController.swift */,
 				65BAE3122813621A000253B5 /* DislocationViewController.swift */,
-				6515652228ED972400F518E7 /* MoonViewController.swift */,
-				6580194128C94A4D0097DCC8 /* MarsViewController.swift */,
+				6515652228ED972400F518E7 /* ContentViewController.swift */,
 				65DB96F5290448ED00F77B74 /* ObservatoryViewController.swift */,
 				65BBC88428FD94510001C317 /* SettingsViewController.swift */,
 			);
@@ -318,7 +302,6 @@
 				65BAE3132813621A000253B5 /* DislocationViewController.swift in Sources */,
 				65BBC88528FD94510001C317 /* SettingsViewController.swift in Sources */,
 				6580194028C8FFC50097DCC8 /* Models.swift in Sources */,
-				6580194228C94A4D0097DCC8 /* MarsViewController.swift in Sources */,
 				650A65C32905817B00777C70 /* Database.swift in Sources */,
 				65AD47D3282EFC2300F08BD5 /* UIShapes.swift in Sources */,
 				65BAE2F92812BDE6000253B5 /* StartViewController.swift in Sources */,
@@ -326,9 +309,10 @@
 				6501896228F033CD00E95C04 /* TagsCollectionView.swift in Sources */,
 				65DB96F6290448ED00F77B74 /* ObservatoryViewController.swift in Sources */,
 				659CC15B28EF8B8300EF3556 /* TagsCell.swift in Sources */,
-				6515652328ED972400F518E7 /* MoonViewController.swift in Sources */,
+				6515652328ED972400F518E7 /* ContentViewController.swift in Sources */,
 				6585CA0C290155E5006A35B0 /* AboutView.swift in Sources */,
 				65BAE2F52812BDE6000253B5 /* AppDelegate.swift in Sources */,
+				658849F92907384B001FD453 /* CAGradientLayer.swift in Sources */,
 				65BAE2F72812BDE6000253B5 /* SceneDelegate.swift in Sources */,
 				65BAE2FF2812BDE6000253B5 /* NASA APIs.xcdatamodeld in Sources */,
 				6585CA0E29016314006A35B0 /* UIView+Extension.swift in Sources */,

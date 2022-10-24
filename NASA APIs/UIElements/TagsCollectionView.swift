@@ -14,7 +14,7 @@ protocol TagsCollectionViewDelegate: AnyObject {
 class TagsCollectionView: UIView {
    
     var getspaceObject: [String]?
-    var delegate: MoonViewControllerDelegate?
+    var delegate: ContentViewController?
 
     private var selectedCell: IndexPath = [0, 0]
 
@@ -55,7 +55,7 @@ extension TagsCollectionView: UICollectionViewDelegate, UICollectionViewDataSour
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return getspaceObject?.count ?? 3
+        return getspaceObject?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
