@@ -7,9 +7,6 @@
 
 import Foundation
 import UIKit
-protocol TagsCollectionViewDelegate: AnyObject {
-    func updatee(object: [String])
-}
 
 class TagsCollectionView: UIView {
    
@@ -34,7 +31,7 @@ class TagsCollectionView: UIView {
         
         viewFrame.addSubview(tagsCollection)
         tagsCollection.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50)
-        tagsCollection.backgroundColor = UIColor.black.withAlphaComponent(0)
+        tagsCollection.backgroundColor = UIColor.black.withAlphaComponent(1)
         tagsCollection.dataSource = self
         tagsCollection.delegate = self
         tagsCollection.register(UINib(nibName: "TagsCell", bundle: nil), forCellWithReuseIdentifier: "TagsCell")
@@ -91,14 +88,6 @@ extension TagsCollectionView: UICollectionViewDelegate, UICollectionViewDataSour
         UIColor.upGradient.withAlphaComponent(1)
         selectedCell = indexPath
         delegate?.update(index: indexPath.row)
-        
-        
-    }
-}
-
-extension TagsCollectionView: TagsCollectionViewDelegate {
-    func updatee(object: [String]) {
-        getspaceObject = object
         
         
     }

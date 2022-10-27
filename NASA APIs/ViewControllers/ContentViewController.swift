@@ -7,46 +7,58 @@
 
 import UIKit
 
-protocol ContentViewControllerDelegate: AnyObject {
+protocol TagsCollectionViewDelegate: AnyObject {
     func update(index: Int)
 }
 
 class ContentViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    private let header = HeaderView()
+    private let header = ContentHeaderView()
     private let tagsCollectionView = TagsCollectionView()
     private var data: FetchLibrary?
-    
-    var delegate: TagsCollectionViewDelegate?
+    private let gradient = Gradient()
+    private let activityIndicator = UIActivityIndicatorView(style: .medium)
     
     var spaceObject: SpaceObject?
    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        guard let test = self.spaceObject?.title else {return}
-        delegate?.updatee(object: test)
         
+
+        createContentTableView()
+
         tagsCollectionView.getspaceObject = spaceObject?.title
         tagsCollectionView.delegate = self
         
-        createTableView()
-        
+        let gradient = gradient.returnGradient(view: self.view, endY: 7)
+        self.view.layer.insertSublayer(gradient, at: 0)
     }
 
-    
-    private func createTableView() {
-        tableView.register(UINib(nibName: "ImageCell", bundle: nil),
-                           forCellReuseIdentifier: "ImageCell")
+    private func createContentTableView() {
+        tableView.register(UINib(nibName: "ContentCell", bundle: nil),
+                           forCellReuseIdentifier: "ContentCell")
         tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         tableView.separatorStyle = .none
+        tableView.backgroundColor = .none
         
         header.headerImage.image = UIImage(named: spaceObject?.image ?? "")
         tableView.tableHeaderView = header.headerFrame
         
         fetchData(from: spaceObject?.link[0])
+        
+        createActivityIndicator()
+    }
+    
+    private func createActivityIndicator() {
+        tableView.addSubview(activityIndicator)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator.centerXAnchor.constraint(equalTo: self.tableView.centerXAnchor).isActive = true
+        activityIndicator.centerYAnchor.constraint(equalTo: self.tableView.centerYAnchor).isActive = true
+        activityIndicator.widthAnchor.constraint(equalTo: self.tableView.widthAnchor).isActive = true
+        activityIndicator.heightAnchor.constraint(equalTo: self.tableView.heightAnchor).isActive = true
+        activityIndicator.startAnimating()
     }
     
     private func fetchData(from url: String?) {
@@ -54,8 +66,8 @@ class ContentViewController: UIViewController {
             switch result {
             case.success(let success):
                 self.data = success
-        
                 DispatchQueue.main.async {
+                    self.activityIndicator.stopAnimating()
                     self.tableView.reloadData()
                 }
             case.failure(let error):
@@ -63,11 +75,6 @@ class ContentViewController: UIViewController {
             }
         }
     }
-    
-    override func viewDidLayoutSubviews() {
-        tableView.frame = view.frame
-    }
-    
 }
     
 extension ContentViewController: UITableViewDataSource, UITableViewDelegate {
@@ -88,8 +95,7 @@ extension ContentViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "ImageCell", for: indexPath) as? ImageCell {
-            
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "ContentCell", for: indexPath) as? ContentCell {
             let pictureDescription = data?.collection.items[indexPath.row].data[indexPath.startIndex]
             let image = data?.collection.items[indexPath.row].links[indexPath.startIndex]
             cell.pictureDescription?.text = pictureDescription?.description
@@ -114,7 +120,7 @@ extension ContentViewController: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
-extension ContentViewController: ContentViewControllerDelegate {
+extension ContentViewController: TagsCollectionViewDelegate {
     func update(index: Int) {
         
         fetchData(from: spaceObject?.link[index])

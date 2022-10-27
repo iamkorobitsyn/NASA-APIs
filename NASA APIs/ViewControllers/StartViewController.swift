@@ -44,6 +44,8 @@ class StartViewController: UIViewController, UITextFieldDelegate, CAAnimationDel
         super.viewDidDisappear(animated)
         ellypsOne.stopAnimating()
         ellypsTwo.stopAnimating()
+        self.view.layer.removeAllAnimations()
+        firstStarShape.removeAllAnimations()
     }
     
     @IBAction func dislocationButton(_ sender: UIButton) {
@@ -56,15 +58,15 @@ class StartViewController: UIViewController, UITextFieldDelegate, CAAnimationDel
         
         firstStarAnimating(shape: firstStarShape)
         secondStarAnimating(shape: secondStarShape)
-        
     }
     
     private func insertCALayers() {
-        view.layer.insertSublayer(gradient.returnGradient(view: view), at: 0)
-        view.layer.insertSublayer(firstStarShape, at: 1)
-        view.layer.insertSublayer(secondStarShape, at: 2)
+        let gradient = gradient.returnGradient(view: self.view, endY: 1)
+        view.layer.insertSublayer(gradient, at: 0)
         shapeBezier.firstStarFrame(shapeLayer: firstStarShape, view: self.view)
         shapeBezier.secondStarFrame(shapeLayer: secondStarShape, view: self.view)
+        view.layer.insertSublayer(firstStarShape, at: 1)
+        view.layer.insertSublayer(secondStarShape, at: 2)
     }
     
     private func starOpasity(shape: CAShapeLayer) {
@@ -119,7 +121,6 @@ class StartViewController: UIViewController, UITextFieldDelegate, CAAnimationDel
         dislocationOutlet.titleLabel?.textColor = .white
         dislocationOutlet.titleLabel?.alpha = 0.7
         dislocationOutlet.titleLabel?.font = .systemFont(ofSize: 25, weight: .thin)
-        
     }
 }
 

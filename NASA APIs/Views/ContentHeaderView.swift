@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class HeaderView: UIView {
+class ContentHeaderView: UIView {
     let headerFrame = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 148))
     let headerImage = UIImageView()
     

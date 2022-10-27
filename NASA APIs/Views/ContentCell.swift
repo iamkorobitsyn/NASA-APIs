@@ -6,7 +6,7 @@
 //
 import UIKit
 
-class ImageCell: UITableViewCell {
+class ContentCell: UITableViewCell {
 
     @IBOutlet weak var pictureOutlet: UIImageView!
     @IBOutlet weak var pictureDescription: UILabel!

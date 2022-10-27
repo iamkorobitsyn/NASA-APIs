@@ -16,6 +16,5 @@ class TagsCell: UICollectionViewCell {
         label.textColor = UIColor.label.withAlphaComponent(0.8)
         label.font = UIFont.systemFont(ofSize: 18, weight: .thin)
     }
-
     
 }

@@ -13,7 +13,7 @@ class DislocationViewController: UIViewController {
     private var timer = Timer()
     private let object = ObjectData()
     
-    private var gradient = CAGradientLayer()
+    private var gradient = Gradient()
     private let animator = Animator()
     private let shapeBezier = ShapeBezier()
 
@@ -46,15 +46,15 @@ class DislocationViewController: UIViewController {
     private let thirdlineShape = ThinLineShape()
     private let fourthLineShape = ThinLineShape()
     private let fiveLineShape = ThinLineShape()
-    
     private let ISSpilling = ThinLineShape()
     private let probesPilling = ThinLineShape()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.backBarButtonItem =
-        UIBarButtonItem(title: "To orbit", style: .plain, target: nil, action: nil)
+        
+       
+        animateOrbit(image: earthCircleOne)
         
         makeStartingSetting()
         createSettingsOfGesture()
@@ -62,10 +62,28 @@ class DislocationViewController: UIViewController {
         pillingProbes()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        navigationController?.setNavigationBarHidden(true, animated: false)
+    override func viewDidLayoutSubviews() {
         
-        animateOrbit(image: earthCircleOne)
+      
+        
+        let gradient = gradient.returnGradient(view: self.view, endY: 1)
+        view.layer.insertSublayer(gradient, at: 0)
+        
+        shapeBezier.firstLineFrame(shapeLayer: firstLineShape, view: EarthViewOutlet)
+        shapeBezier.secondLineFrame(shapeLayer: secondLineShape, view: ISSViewOutlet)
+        shapeBezier.thirdlineFrame(shapeLayer: thirdlineShape, view: spaceProbesViewOutlet)
+        shapeBezier.fourthLineFrame(shapeLayer: fourthLineShape, view: myObservatoryViewOutlet)
+        shapeBezier.fiveLineFrame(shapeLayer: fiveLineShape, view: sunViewOutlet)
+        shapeBezier.ISSPilling(shapeLayer: ISSpilling, view: ISSViewOutlet)
+        shapeBezier.probesPilling(shapeLayer: probesPilling, view: spaceProbesViewOutlet)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        navigationController?.setNavigationBarHidden(true, animated: false)
+        navigationItem.backBarButtonItem =
+        UIBarButtonItem(title: "To orbit", style: .plain, target: nil, action: nil)
+        
         earthCircleOne.layer.speed = 0.3
         animateSatellites(image: earthCircleTwo)
         earthCircleTwo.layer.speed = 0.2
@@ -87,32 +105,11 @@ class DislocationViewController: UIViewController {
         pillingISS(shape: ISSpilling)
     }
     
-    override func viewDidLayoutSubviews() {
-        shapeBezier.firstLineFrame(shapeLayer: firstLineShape, view: EarthViewOutlet)
-        shapeBezier.secondLineFrame(shapeLayer: secondLineShape, view: ISSViewOutlet)
-        shapeBezier.thirdlineFrame(shapeLayer: thirdlineShape, view: spaceProbesViewOutlet)
-        shapeBezier.fourthLineFrame(shapeLayer: fourthLineShape, view: myObservatoryViewOutlet)
-        shapeBezier.fiveLineFrame(shapeLayer: fiveLineShape, view: sunViewOutlet)
-        shapeBezier.ISSPilling(shapeLayer: ISSpilling, view: ISSViewOutlet)
-        shapeBezier.probesPilling(shapeLayer: probesPilling, view: spaceProbesViewOutlet)
-        
-        gradient = addGradient()
-        gradient.frame = CGRect(x: 0, y: 0, width: view.frame.width,
-                                   height: view.frame.height)
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        view.layer.removeAllAnimations()
     }
     
-    func addGradient() -> CAGradientLayer {
-        let gradient = CAGradientLayer()
-        view.layer.insertSublayer(gradient, at: 0)
-        gradient.startPoint = CGPoint(x: 0, y: 0)
-        gradient.endPoint = CGPoint(x: 0, y: 1)
-        gradient.frame = CGRect(x: 0, y: 0, width: view.frame.width,
-                                height: view.frame.height)
-        gradient.colors = [UIColor.downGradient.cgColor,
-                           UIColor.upGradient.cgColor]
-        return gradient
-    }
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let moonVC = segue.destination as? ContentViewController else {return}
         guard let objectName = objectName else {return}
@@ -161,12 +158,12 @@ class DislocationViewController: UIViewController {
     
     @objc func tapObservatory() {
         print("myObservatory")
-        guard let vc = storyboard?.instantiateViewController(withIdentifier: "ObservatoryViewController") as? ObservatoryViewController else {return}
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: "ObservatoryViewController") as? ObserverViewController else {return}
         
         navigationController?.pushViewController(vc, animated: true)
         navigationController?.setNavigationBarHidden(false, animated: true)
         
-        vc.title = "My observatory"
+        vc.title = "Observer"
     }
     
     private func createSettingsOfGesture() {
@@ -187,8 +184,6 @@ class DislocationViewController: UIViewController {
         myObservatoryViewOutlet.addGestureRecognizer(tapObservatory)
         sunViewOutlet.addGestureRecognizer(tapSun)
     }
-    
-   
     
     private func createLines() {
         EarthViewOutlet.layer.insertSublayer(firstLineShape, at: 0)
@@ -277,6 +272,7 @@ class DislocationViewController: UIViewController {
     }
     
     private func makeStartingSetting() {
+        
         EarthLabel.alpha = 0
         ISSLabel.alpha = 0
         moonLabel.alpha = 0

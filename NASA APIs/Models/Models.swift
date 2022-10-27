@@ -58,3 +58,11 @@ enum ObjectName: String {
     case mars = "Mars"
     case spaceProbes = "Space Probes"
 }
+
+//MARK: - Observer
+
+struct Observer {
+    let name: String
+    let surename: String
+    var fullName: String { "\(name) \(surename)" }
+}

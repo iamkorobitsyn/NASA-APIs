@@ -10,7 +10,7 @@ import UIKit
 class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
   
     
-    private  var pickerMenuArray = ["English", "Русский", "Turkey", "sjefhgsdjhfg"]
+    private  var pickerMenuArray = ["English", "Русский", "Turkey",]
     
     @IBOutlet weak var tapView: UIView!
     @IBOutlet weak var visualView: UIVisualEffectView!
@@ -72,7 +72,6 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
     }
     
     private func setupAboutButton() {
-        
         aboutButtonOutlet.layer.cornerRadius = 10
         aboutButtonOutlet.backgroundColor = UIColor.darkGray.withAlphaComponent(0.4)
         aboutButtonOutlet.tintColor = UIColor.lightGray
@@ -111,14 +110,12 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
         return 1
     }
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 3
+        return pickerMenuArray.count
         
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return pickerMenuArray[row]
     }
-    
-    
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
     
