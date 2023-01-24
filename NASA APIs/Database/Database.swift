@@ -10,7 +10,6 @@ import Foundation
 struct ObjectData {
     static func getObject() -> [SpaceObject] {
         
-        
         [SpaceObject(title: ["Sun",
                             "Solar Dynamics Observatory SDO",
                             "Eruption",

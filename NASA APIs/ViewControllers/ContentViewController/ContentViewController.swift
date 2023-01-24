@@ -7,59 +7,58 @@
 
 import UIKit
 
-protocol TagsCollectionViewDelegate: AnyObject {
+protocol collectionViewForHeaderOfSectionDelegate: AnyObject {
     func update(index: Int)
 }
 
 class ContentViewController: UIViewController {
     
-    @IBOutlet weak var tableView: UITableView!
-    private let header = ContentHeaderView()
-    private let tagsCollectionView = TagsCollectionView()
     private var data: FetchLibrary?
-    private let gradient = Gradient()
-    private let activityIndicator = UIActivityIndicatorView(style: .medium)
-    
     var spaceObject: SpaceObject?
+    
+    @IBOutlet weak var tableView: UITableView!
+    private let tableViewHeader = headerView()
+    private let collectionViewForHeaderOfSection = headerViewForSection()
+
+    private let activityIndicator = UIActivityIndicatorView(style: .medium)
    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-
-        createContentTableView()
-
-        tagsCollectionView.getspaceObject = spaceObject?.title
-        tagsCollectionView.delegate = self
-        
-        let gradient = gradient.returnGradient(view: self.view, endY: 7)
-        self.view.layer.insertSublayer(gradient, at: 0)
+        instanceTableView()
+        collectionViewForHeaderOfSection.getspaceObject = spaceObject?.title
+        collectionViewForHeaderOfSection.delegate = self
     }
+    
+    //MARK: - Instance UITableView
 
-    private func createContentTableView() {
-        tableView.register(UINib(nibName: "ContentCell", bundle: nil),
-                           forCellReuseIdentifier: "ContentCell")
+    private func instanceTableView() {
+        tableView.register(UINib(nibName: "ContentViewCell", bundle: nil),
+                           forCellReuseIdentifier: "ContentViewCell")
         tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         tableView.separatorStyle = .none
         tableView.backgroundColor = .none
-        
-        header.headerImage.image = UIImage(named: spaceObject?.image ?? "")
-        tableView.tableHeaderView = header.headerFrame
-        
+        tableViewHeader.headerImage.image = UIImage(named: spaceObject?.image ?? "")
+        tableView.tableHeaderView = tableViewHeader.headerFrame
         fetchData(from: spaceObject?.link[0])
-        
-        createActivityIndicator()
+        setupActivityIndicator()
     }
     
-    private func createActivityIndicator() {
+    //MARK: - Activity Indicator
+    
+    private func setupActivityIndicator() {
         tableView.addSubview(activityIndicator)
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        activityIndicator.centerXAnchor.constraint(equalTo: self.tableView.centerXAnchor).isActive = true
-        activityIndicator.centerYAnchor.constraint(equalTo: self.tableView.centerYAnchor).isActive = true
-        activityIndicator.widthAnchor.constraint(equalTo: self.tableView.widthAnchor).isActive = true
-        activityIndicator.heightAnchor.constraint(equalTo: self.tableView.heightAnchor).isActive = true
+        
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: self.tableView.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: self.tableView.centerYAnchor),
+            activityIndicator.widthAnchor.constraint(equalTo: self.tableView.widthAnchor),
+            activityIndicator.heightAnchor.constraint(equalTo: self.tableView.heightAnchor),
+        ])
         activityIndicator.startAnimating()
     }
+    
+    //MARK: - Fetch Data
     
     private func fetchData(from url: String?) {
         NetworkManager.shared.fetchLibrary(from: url ?? "") { result in
@@ -76,6 +75,8 @@ class ContentViewController: UIViewController {
         }
     }
 }
+
+//MARK: - UITableView DataSourse & Delegate
     
 extension ContentViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -91,21 +92,20 @@ extension ContentViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return tagsCollectionView.viewFrame
+        return collectionViewForHeaderOfSection.viewFrame
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "ContentCell", for: indexPath) as? ContentCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "ContentViewCell", for: indexPath) as? ContentViewCell {
             let pictureDescription = data?.collection.items[indexPath.row].data[indexPath.startIndex]
             let image = data?.collection.items[indexPath.row].links[indexPath.startIndex]
             cell.pictureDescription?.text = pictureDescription?.description
             cell.selectionStyle = .none
-            
             cell.pictureOutlet.image = .none
             cell.activityIndicatorOutlet.isHidden = false
             cell.activityIndicatorOutlet.startAnimating()
 
-            cell.pictureOutlet.fetchImage(from: image?.href ?? "") {
+            cell.pictureOutlet.fetchImage(from: image?.href ?? "", cash: true) {
                 cell.activityIndicatorOutlet.stopAnimating()
                 cell.activityIndicatorOutlet.isHidden = true
             }
@@ -120,7 +120,7 @@ extension ContentViewController: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
-extension ContentViewController: TagsCollectionViewDelegate {
+extension ContentViewController: collectionViewForHeaderOfSectionDelegate {
     func update(index: Int) {
         
         fetchData(from: spaceObject?.link[index])

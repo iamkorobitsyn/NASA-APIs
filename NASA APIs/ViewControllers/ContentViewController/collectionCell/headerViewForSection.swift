@@ -5,10 +5,9 @@
 //  Created by Александр Коробицын on 07.10.2022.
 //
 
-import Foundation
 import UIKit
 
-class TagsCollectionView: UIView {
+class headerViewForSection: UIView {
    
     var getspaceObject: [String]?
     var delegate: ContentViewController?
@@ -16,7 +15,7 @@ class TagsCollectionView: UIView {
     private var selectedCell: IndexPath = [0, 0]
 
     let viewFrame = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
-    var tagsCollection: UICollectionView = {
+    var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 0
@@ -29,26 +28,24 @@ class TagsCollectionView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        viewFrame.addSubview(tagsCollection)
-        tagsCollection.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50)
-        tagsCollection.backgroundColor = UIColor.black.withAlphaComponent(1)
-        tagsCollection.dataSource = self
-        tagsCollection.delegate = self
-        tagsCollection.register(UINib(nibName: "TagsCell", bundle: nil), forCellWithReuseIdentifier: "TagsCell")
+        viewFrame.addSubview(collectionView)
+        collectionView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50)
+        collectionView.backgroundColor = UIColor.black.withAlphaComponent(1)
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.register(UINib(nibName: "headerSectionCell", bundle: nil), forCellWithReuseIdentifier: "headerSectionCell")
        
-        tagsCollection.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
     }
-    
    
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
 }
 
-extension TagsCollectionView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension headerViewForSection: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -57,14 +54,14 @@ extension TagsCollectionView: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        if let cell = tagsCollection.dequeueReusableCell(withReuseIdentifier: "TagsCell",
-                                                         for: indexPath) as? TagsCell {
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "headerSectionCell",
+                                                         for: indexPath) as? headerSectionCell {
             
             cell.label.text = getspaceObject?[indexPath.row]
             cell.backgroundColor = UIColor.systemGray4.withAlphaComponent(1)
             cell.layer.cornerRadius = 7
             
-            tagsCollection.cellForItem(at: selectedCell)?.backgroundColor =
+            collectionView.cellForItem(at: selectedCell)?.backgroundColor =
             UIColor.upGradient.withAlphaComponent(1)
             
             return cell
@@ -82,9 +79,9 @@ extension TagsCollectionView: UICollectionViewDelegate, UICollectionViewDataSour
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        tagsCollection.cellForItem(at: selectedCell)?.backgroundColor =
+        collectionView.cellForItem(at: selectedCell)?.backgroundColor =
         UIColor.systemGray4.withAlphaComponent(1)
-        tagsCollection.cellForItem(at: indexPath)?.backgroundColor =
+        collectionView.cellForItem(at: indexPath)?.backgroundColor =
         UIColor.upGradient.withAlphaComponent(1)
         selectedCell = indexPath
         delegate?.update(index: indexPath.row)

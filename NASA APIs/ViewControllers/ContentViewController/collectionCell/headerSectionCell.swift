@@ -1,13 +1,13 @@
 //
-//  TagsCell.swift
+//  headerSectionCell.swift
 //  NASA APIs
 //
-//  Created by Александр Коробицын on 07.10.2022.
+//  Created by Александр Коробицын on 20.11.2022.
 //
 
 import UIKit
 
-class TagsCell: UICollectionViewCell {
+class headerSectionCell: UICollectionViewCell {
 
     @IBOutlet weak var label: UILabel!
     

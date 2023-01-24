@@ -5,10 +5,9 @@
 //  Created by Александр Коробицын on 05.10.2022.
 //
 
-import Foundation
 import UIKit
 
-class ContentHeaderView: UIView {
+class headerView: UIView {
     let headerFrame = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 148))
     let headerImage = UIImageView()
     

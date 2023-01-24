@@ -7,10 +7,7 @@
 
 import UIKit
 
-class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
-  
-    
-    private  var pickerMenuArray = ["English", "Русский", "Turkey",]
+class AboutViewController: UIViewController {
     
     @IBOutlet weak var tapView: UIView!
     @IBOutlet weak var visualView: UIVisualEffectView!
@@ -28,19 +25,13 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
     }()
 
     @IBOutlet weak var segmentViewOutlet: UISegmentedControl!
-    @IBOutlet weak var pickerViewOutlet: UIPickerView!
-    
     @IBOutlet weak var aboutButtonOutlet: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        visualView.layer.cornerRadius = 15
         let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapView))
         tapView.addGestureRecognizer(gesture)
-
-        visualView.layer.cornerRadius = 15
-        
-        setupPickewView()
         setupSegmentView()
         setupAboutButton()
     }
@@ -94,47 +85,9 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
         MTUserDevaults.shared.theme = Theme(rawValue: segmentViewOutlet.selectedSegmentIndex) ?? .device
         view.window?.overrideUserInterfaceStyle = MTUserDevaults.shared.theme.getUserInterfaceStyle()
     }
-    
-    private func setupPickewView() {
-        pickerViewOutlet.dataSource = self
-        pickerViewOutlet.delegate = self
-        pickerViewOutlet.layer.cornerRadius = 8
-        pickerViewOutlet.backgroundColor = UIColor.gray.withAlphaComponent(0)
-        
-    }
-    
-    
-    //MARK: - UIPickerView Delegate & DataSourse
-
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return pickerMenuArray.count
-        
-    }
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return pickerMenuArray[row]
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-    
-        let label = (view as? UILabel) ?? UILabel()
-      
-
-        label.text = pickerMenuArray[row]
-        label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 17, weight: .medium)
-        label.textColor = UIColor.white.withAlphaComponent(1)
-        
-        pickerView.subviews[1].layer.borderWidth = 0.5
-        pickerView.subviews[1].layer.borderColor = UIColor.label.withAlphaComponent(0.4).cgColor
-        pickerView.subviews[1].backgroundColor = .none
-        return label
-    }
 }
 
-extension SettingsViewController: AboutDelegate {
+extension AboutViewController: AboutDelegate {
     func skipAction() {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapView))
         tapView.addGestureRecognizer(gesture)
