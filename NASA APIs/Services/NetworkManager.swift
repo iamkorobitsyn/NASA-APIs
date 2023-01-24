@@ -43,48 +43,5 @@ class NetworkManager {
             }
         }.resume()
     }
-    
-    func fetchImage(from url: String,
-                        completion: @escaping(Result<Data, NetworkError>) -> Void) {
-        
-        guard let url = URL(string: url) else {
-            completion(.failure(.invalidURL))
-            return }
-        
-        URLSession.shared.dataTask(with: url) { data, responce, error in
-            guard let data = data, let responce = responce else {
-                print(error?.localizedDescription ?? "no error description")
-                return
-            }
-            
-            guard url == responce.url else {return}
-            
-            DispatchQueue.main.async {
-                completion(.success(data))
-            }
-        }.resume()
-    }
 }
 
-
-class ImageManager {
-    static var shared = ImageManager()
-    
-    private init() {}
-    
-    func fetchImage(from url: URL, completion: @escaping(Data, URLResponse) -> Void) {
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            guard let data = data, let response = response else {
-                print(error?.localizedDescription ?? "No error description")
-                return
-            }
-
-            guard url == response.url else { return }
-            
-            DispatchQueue.main.async {
-                completion(data, response)
-            }
-            
-        }.resume()
-    }
-}
